@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>{% block title %}Damage-Assessment-System{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#e7e7f3",
+                        "tertiary": "#943700",
+                        "tertiary-fixed": "#ffdbcd",
+                        "surface-variant": "#e1e2ed",
+                        "on-tertiary-container": "#ffede6",
+                        "surface-container-highest": "#e1e2ed",
+                        "secondary-fixed-dim": "#c0c7d6",
+                        "on-primary-fixed": "#00174b",
+                        "tertiary-container": "#bc4800",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#434655",
+                        "outline": "#737686",
+                        "on-background": "#191b23",
+                        "surface-bright": "#faf8ff",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#f0f0fb",
+                        "primary-fixed": "#dbe1ff",
+                        "surface-container": "#ededf9",
+                        "secondary-fixed": "#dce2f3",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface-dim": "#d9d9e5",
+                        "background": "#faf8ff",
+                        "surface-tint": "#0053db",
+                        "on-surface": "#191b23",
+                        "secondary-container": "#dce2f3",
+                        "on-tertiary-fixed": "#360f00",
+                        "surface-container-low": "#f3f3fe",
+                        "on-secondary-container": "#5e6572",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "outline-variant": "#c3c6d7",
+                        "on-secondary-fixed-variant": "#404754",
+                        "on-secondary-fixed": "#151c27",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#b4c5ff",
+                        "on-primary-container": "#eeefff",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "surface": "#faf8ff",
+                        "secondary": "#585f6c",
+                        "primary": "#004ac6",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "inverse-surface": "#2e3039",
+                        "primary-container": "#2563eb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "stack-sm": "8px",
+                        "unit": "4px",
+                        "stack-lg": "32px",
+                        "margin-mobile": "16px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "body-md": ["Geist"],
+                        "label-md": ["Geist"],
+                        "title-lg": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "body-lg": ["Geist"],
+                        "headline-lg": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "title-lg": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Geist', sans-serif; background-color: #faf8ff; color: #191b23; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        /* Custom Elevation Level 2 for active/floating */
+        .shadow-level-2 {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+        }
+        /* Pulse animation for damage pins */
+        .pulse-pin {
+            animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
+        /* Custom range slider styling */
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #2563eb;
+            cursor: pointer;
+            margin-top: -8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #e1e2ed;
+            border-radius: 2px;
+        }
+        input[type=range]:focus {
+            outline: none;
+        }
+        /* Toggle switch */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #2563eb;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #2563eb;
+        }
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex antialiased selection:bg-primary-container selection:text-on-primary-container">
+
+    {# ==================== SIDEBAR NAVIGATION (Desktop) ==================== #}
+    <nav class="hidden md:flex fixed left-0 top-0 h-full flex-col p-stack-md z-40 bg-surface-container-low border-r border-outline-variant shadow-sm w-64">
+        <!-- Header Info -->
+        <div class="mb-stack-lg">
+            <h1 class="text-title-lg font-title-lg font-extrabold text-primary mb-1">Damage Assessment</h1>
+            <div class="flex items-center gap-3 mt-4">
+                <div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center overflow-hidden border border-outline-variant">
+                    <img alt="Surveyor Profile"
+                         class="w-full h-full object-cover"
+                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuCONOUW3UykK4WI406nkszJXd2_OkWuKtDr-OUxg_4Nh-Y8afOtFIKJLziIzdWdPoosXOTdpZXTjiPXQVUiZsd_nOvLAaay3X4E78cRQM7B76vt1QufX5U8WPbUzlzH7ffj2sKmqGuLDj6MLeuANV7KnA8wyPUwzPTiq2islYhZ193YiiLa64n4bI-imKA2IDt1l0xIKHY4jOHur4l1YVkpLpH3o0aEa7kiGFjayq429eCagK6JxVmn"/>
+                </div>
+                <div>
+                    <p class="text-body-md font-body-md font-semibold">Alex Mercer</p>
+                    <p class="text-label-md font-label-md text-on-surface-variant">Senior Adjuster</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="flex-1 flex flex-col gap-2">
+            {# --- Home --- #}
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200
+                {% if active_page == 'home' %}
+                    bg-primary-container text-on-primary-container font-bold scale-[0.99]
+                {% else %}
+                    text-on-surface-variant hover:bg-surface-container-high
+                {% endif %}"
+               href="{{ url_for('home') }}">
+                <span class="material-symbols-outlined"
+                      {% if active_page == 'home' %}style="font-variation-settings: 'FILL' 1;"{% endif %}>home</span>
+                <span class="text-body-md font-body-md">Home</span>
+            </a>
+
+            {# --- New Assessment --- #}
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200
+                {% if active_page == 'new_assessment' %}
+                    bg-primary-container text-on-primary-container font-bold scale-[0.99]
+                {% else %}
+                    text-on-surface-variant hover:bg-surface-container-high
+                {% endif %}"
+               href="{{ url_for('new_assessment') }}">
+                <span class="material-symbols-outlined"
+                      {% if active_page == 'new_assessment' %}style="font-variation-settings: 'FILL' 1;"{% endif %}>add_box</span>
+                <span class="text-body-md font-body-md">New Assessment</span>
+            </a>
+
+            {# --- History --- #}
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200
+                {% if active_page == 'history' %}
+                    bg-primary-container text-on-primary-container font-bold scale-[0.99]
+                {% else %}
+                    text-on-surface-variant hover:bg-surface-container-high
+                {% endif %}"
+               href="{{ url_for('assessment_history') }}">
+                <span class="material-symbols-outlined"
+                      {% if active_page == 'history' %}style="font-variation-settings: 'FILL' 1;"{% endif %}>history</span>
+                <span class="text-body-md font-body-md">History</span>
+            </a>
+
+            {# --- Settings --- #}
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200
+                {% if active_page == 'settings' %}
+                    bg-primary-container text-on-primary-container font-bold scale-[0.99]
+                {% else %}
+                    text-on-surface-variant hover:bg-surface-container-high
+                {% endif %}"
+               href="{{ url_for('settings') }}">
+                <span class="material-symbols-outlined"
+                      {% if active_page == 'settings' %}style="font-variation-settings: 'FILL' 1;"{% endif %}>settings</span>
+                <span class="text-body-md font-body-md">Settings</span>
+            </a>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="mt-auto pt-4">
+            <a href="{{ url_for('new_assessment') }}"
+               class="w-full bg-primary text-on-primary rounded-lg py-3 flex items-center justify-center gap-2 hover:bg-surface-tint transition-colors shadow-sm active:scale-95 duration-150">
+                <span class="material-symbols-outlined text-sm">add</span>
+                <span class="text-label-md font-label-md font-bold">New Assessment</span>
+            </a>
+        </div>
+    </nav>
+
+    {# ==================== MOBILE TOP NAV ==================== #}
+    <div class="md:hidden flex justify-between items-center w-full px-margin-mobile h-16 bg-surface border-b border-outline-variant fixed top-0 left-0 z-50">
+        <span class="text-title-lg font-title-lg font-bold text-on-surface">Damage-Assessment-System</span>
+        <div class="flex items-center gap-4">
+            <span class="material-symbols-outlined text-primary cursor-pointer">notifications</span>
+            <span class="material-symbols-outlined text-primary cursor-pointer">account_circle</span>
+        </div>
+    </div>
+
+    {# ==================== MOBILE BOTTOM NAV ==================== #}
+    <nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container-lowest border-t border-outline-variant flex justify-around items-center h-16 z-50">
+        <a class="flex flex-col items-center gap-1 p-2
+            {% if active_page == 'home' %}text-primary border-t-2 border-primary pt-[6px]{% else %}text-secondary{% endif %}"
+           href="{{ url_for('home') }}">
+            <span class="material-symbols-outlined"
+                  {% if active_page == 'home' %}style="font-variation-settings: 'FILL' 1;"{% endif %}>home</span>
+            <span class="text-[10px] font-label-md {% if active_page == 'home' %}font-bold{% endif %}">Home</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 p-2
+            {% if active_page == 'new_assessment' %}text-primary border-t-2 border-primary pt-[6px]{% else %}text-secondary{% endif %}"
+           href="{{ url_for('new_assessment') }}">
+            <span class="material-symbols-outlined"
+                  {% if active_page == 'new_assessment' %}style="font-variation-settings: 'FILL' 1;"{% endif %}>add_box</span>
+            <span class="text-[10px] font-label-md {% if active_page == 'new_assessment' %}font-bold{% endif %}">New</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 p-2
+            {% if active_page == 'history' %}text-primary border-t-2 border-primary pt-[6px]{% else %}text-secondary{% endif %}"
+           href="{{ url_for('assessment_history') }}">
+            <span class="material-symbols-outlined"
+                  {% if active_page == 'history' %}style="font-variation-settings: 'FILL' 1;"{% endif %}>history</span>
+            <span class="text-[10px] font-label-md {% if active_page == 'history' %}font-bold{% endif %}">History</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 p-2
+            {% if active_page == 'settings' %}text-primary border-t-2 border-primary pt-[6px]{% else %}text-secondary{% endif %}"
+           href="{{ url_for('settings') }}">
+            <span class="material-symbols-outlined"
+                  {% if active_page == 'settings' %}style="font-variation-settings: 'FILL' 1;"{% endif %}>settings</span>
+            <span class="text-[10px] font-label-md {% if active_page == 'settings' %}font-bold{% endif %}">Settings</span>
+        </a>
+    </nav>
+
+    {# ==================== MAIN CONTENT AREA ==================== #}
+    <main class="flex-1 md:ml-64 pt-16 md:pt-0 p-margin-mobile md:p-margin-desktop w-full max-w-[1280px] mx-auto pb-24 md:pb-margin-desktop overflow-y-auto">
+        {% block content %}{% endblock %}
+    </main>
+
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

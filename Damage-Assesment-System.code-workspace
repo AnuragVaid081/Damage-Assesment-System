@@ -1,0 +1,9 @@
+{
+	"python.terminal.activateEnvironment": true,
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
+}

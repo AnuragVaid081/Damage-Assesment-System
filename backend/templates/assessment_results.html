@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}Assessment Results - Damage-Assessment-System{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<header class="flex flex-col md:flex-row md:justify-between md:items-end mb-stack-lg gap-4">
+    <div>
+        <p class="text-label-md font-label-md text-primary font-bold mb-1">ASSESSMENT ID: #{{ assessment.id }}</p>
+        <h2 class="text-headline-md font-headline-md text-on-background">Assessment Results</h2>
+    </div>
+    <div class="flex gap-3">
+        <button class="px-4 py-2 border border-outline-variant bg-surface text-on-surface rounded-lg hover:bg-surface-container-low transition-colors text-label-md font-label-md flex items-center gap-2">
+            <span class="material-symbols-outlined text-[18px]">download</span>
+            Download Report (PDF)
+        </button>
+        <button class="px-4 py-2 bg-primary text-on-primary rounded-lg hover:bg-primary/90 transition-colors text-label-md font-label-md active:scale-95">
+            Submit to Claims
+        </button>
+    </div>
+</header>
+
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+    <!-- Image Inspector Panel (Spans 8 cols on lg) -->
+    <div class="lg:col-span-8 flex flex-col gap-gutter">
+        <div class="bg-surface rounded-xl border border-outline-variant p-4 relative overflow-hidden group">
+            <!-- Image Container -->
+            <div class="relative w-full aspect-video rounded-lg overflow-hidden bg-surface-container-highest">
+                <img class="object-cover w-full h-full"
+                     src="{{ assessment.main_image }}"
+                     alt="Vehicle damage assessment image"/>
+                {% for anomaly in assessment.anomalies %}
+                {% if anomaly.bbox %}
+                <!-- Bounding Box {{ loop.index }} -->
+                <div class="absolute border-2 rounded-sm hover:bg-opacity-20 transition-colors cursor-pointer"
+                     style="border-color: {{ anomaly.color }};
+                            background-color: {{ anomaly.color }}15;
+                            top: {{ anomaly.bbox.top }};
+                            left: {{ anomaly.bbox.left }};
+                            width: {{ anomaly.bbox.width }};
+                            height: {{ anomaly.bbox.height }};">
+                    <div class="absolute -top-3 -right-3 w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg"
+                         style="background-color: {{ anomaly.color }};">{{ loop.index }}</div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- AI Summary Card -->
+        <div class="bg-surface rounded-xl border border-outline-variant p-6 hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05),0_4px_6px_-2px_rgba(0,0,0,0.025)] transition-shadow duration-300">
+            <div class="flex items-center gap-2 mb-4 text-primary">
+                <span class="material-symbols-outlined">auto_awesome</span>
+                <h3 class="text-title-lg font-title-lg">AI Damage Summary</h3>
+            </div>
+            <p class="text-body-md font-body-md text-on-surface-variant leading-relaxed">
+                {{ assessment.ai_summary }}
+            </p>
+        </div>
+    </div>
+
+    <!-- Details Panel (Spans 4 cols on lg) -->
+    <div class="lg:col-span-4 flex flex-col gap-4">
+        <h3 class="text-title-lg font-title-lg mb-2">Detected Anomalies</h3>
+
+        {% for anomaly in assessment.anomalies %}
+        {% if anomaly.severity != 'None' %}
+        <!-- Damage Card {{ loop.index }} -->
+        <div class="bg-surface rounded-xl border border-outline-variant p-4 hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)] transition-all duration-300 -translate-y-0 hover:-translate-y-1 cursor-pointer">
+            <div class="flex justify-between items-start mb-3">
+                <div class="flex items-center gap-2">
+                    <span class="w-6 h-6 text-white rounded-full flex items-center justify-center text-xs font-bold"
+                          style="background-color: {{ anomaly.color }};">{{ loop.index }}</span>
+                    <span class="text-label-md font-label-md font-bold text-on-background">{{ anomaly.part }}</span>
+                </div>
+                <span class="px-2 py-1 bg-surface-container-highest text-on-surface-variant rounded text-[10px] font-bold tracking-wider">{{ anomaly.confidence }}% CONFIDENCE</span>
+            </div>
+            <div class="flex flex-col gap-2">
+                <div class="flex justify-between items-center text-body-md font-body-md">
+                    <span class="text-on-surface-variant">Type</span>
+                    <span class="text-on-background font-medium">{{ anomaly.damage_type }}</span>
+                </div>
+                <div class="flex justify-between items-center text-body-md font-body-md">
+                    <span class="text-on-surface-variant">Severity</span>
+                    <span class="px-2 py-0.5 rounded text-label-md font-label-md"
+                          style="background-color: {{ anomaly.severity_bg }}; color: {{ anomaly.severity_color }};">{{ anomaly.severity }}</span>
+                </div>
+                <div class="flex justify-between items-center text-body-md font-body-md">
+                    <span class="text-on-surface-variant">Action</span>
+                    <span class="text-on-background font-medium">{{ anomaly.action }}</span>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <!-- Safe Card (No Damage) -->
+        <div class="bg-surface-bright rounded-xl border border-outline-variant/50 p-4 opacity-75">
+            <div class="flex justify-between items-start mb-2">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-green-600 text-[20px]">check_circle</span>
+                    <span class="text-label-md font-label-md font-bold text-on-background">{{ anomaly.part }}</span>
+                </div>
+                <span class="px-2 py-1 bg-surface-container-highest text-on-surface-variant rounded text-[10px] font-bold tracking-wider">{{ anomaly.confidence }}% CONFIDENCE</span>
+            </div>
+            <p class="text-body-md font-body-md text-on-surface-variant">No structural damage or cracks detected.</p>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

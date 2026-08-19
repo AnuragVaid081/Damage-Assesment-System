@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block title %}Damage Assessment System - Settings{% endblock %}
+
+{% block content %}
+<header class="mb-stack-lg">
+    <h2 class="text-headline-lg md:font-headline-lg font-headline-lg-mobile text-on-surface mb-unit">System Settings</h2>
+    <p class="text-body-lg font-body-lg text-on-surface-variant">Configure AI assessment parameters and application preferences.</p>
+</header>
+
+<form action="{{ url_for('save_settings') }}" method="POST">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+    <!-- Settings Column -->
+    <div class="lg:col-span-8 flex flex-col gap-gutter">
+
+        <!-- AI Model Settings Section -->
+        <section class="bg-surface-container-lowest border border-outline-variant rounded-[16px] p-stack-md transition-shadow duration-300 hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05),0_4px_6px_-2px_rgba(0,0,0,0.025)]">
+            <h3 class="text-title-lg font-title-lg text-on-surface mb-stack-md flex items-center gap-2 border-b border-outline-variant pb-unit">
+                <span class="material-symbols-outlined text-primary">psychology</span>
+                AI Assessment Logic
+            </h3>
+            <div class="flex flex-col gap-stack-md">
+                <!-- Model Version -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-unit">
+                    <div>
+                        <h4 class="text-body-md font-body-md font-semibold text-on-surface">Active Model</h4>
+                        <p class="text-label-md font-label-md text-on-surface-variant mt-1">Select the AI inference engine for damage detection.</p>
+                    </div>
+                    <div class="bg-surface-container px-3 py-2 border border-outline-variant rounded-md flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                        <select name="model_version" class="bg-transparent text-body-md font-body-md text-on-surface outline-none cursor-pointer">
+                            <option value="v2.4" {% if settings.model_version == 'v2.4' %}selected{% endif %}>Assessment Logic v2.4</option>
+                            <option value="v2.3" {% if settings.model_version == 'v2.3' %}selected{% endif %}>Assessment Logic v2.3</option>
+                            <option value="v2.2" {% if settings.model_version == 'v2.2' %}selected{% endif %}>Assessment Logic v2.2</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Threshold Slider -->
+                <div class="mt-stack-sm pt-stack-sm border-t border-outline-variant border-dashed">
+                    <div class="flex justify-between items-center mb-unit">
+                        <h4 class="text-body-md font-body-md font-semibold text-on-surface">Detection Confidence Threshold</h4>
+                        <span class="text-label-md font-label-md bg-surface-container px-2 py-1 rounded text-primary font-bold" id="threshold-val">{{ settings.threshold }}%</span>
+                    </div>
+                    <p class="text-label-md font-label-md text-on-surface-variant mb-stack-sm">Adjust the minimum confidence level required to flag a damage anomaly. Higher values reduce false positives.</p>
+                    <input class="w-full" name="threshold" max="99" min="50" type="range" value="{{ settings.threshold }}"
+                           oninput="document.getElementById('threshold-val').innerText = this.value + '%'"/>
+                    <div class="flex justify-between text-label-md font-label-md text-on-surface-variant mt-2">
+                        <span>Liberal (50%)</span>
+                        <span>Strict (99%)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Appearance Section -->
+        <section class="bg-surface-container-lowest border border-outline-variant rounded-[16px] p-stack-md transition-shadow duration-300 hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05),0_4px_6px_-2px_rgba(0,0,0,0.025)]">
+            <h3 class="text-title-lg font-title-lg text-on-surface mb-stack-md flex items-center gap-2 border-b border-outline-variant pb-unit">
+                <span class="material-symbols-outlined text-primary">palette</span>
+                Appearance
+            </h3>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-unit">
+                <div>
+                    <h4 class="text-body-md font-body-md font-semibold text-on-surface">Dark Mode</h4>
+                    <p class="text-label-md font-label-md text-on-surface-variant mt-1">Switch between light and dark themes for the application interface.</p>
+                </div>
+                <!-- Toggle -->
+                <div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+                    <input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer border-outline-variant outline-none"
+                           id="theme-toggle" name="dark_mode" type="checkbox"
+                           style="top: 2px; left: 2px; transition: all 0.3s;"
+                           {% if settings.dark_mode %}checked{% endif %}/>
+                    <label class="toggle-label block overflow-hidden h-7 rounded-full bg-surface-container cursor-pointer transition-colors duration-300 border border-outline-variant"
+                           for="theme-toggle"></label>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actions -->
+        <div class="flex justify-end gap-3 mt-stack-sm">
+            <a href="{{ url_for('settings') }}"
+               class="bg-surface-container-lowest border border-outline-variant text-on-surface px-4 py-2 rounded-lg text-body-md font-body-md hover:bg-surface-container transition-colors">
+                Discard Changes
+            </a>
+            <button type="submit"
+                    class="bg-primary-container text-on-primary-container px-4 py-2 rounded-lg text-body-md font-body-md hover:scale-[0.98] transition-transform shadow-sm">
+                Save Settings
+            </button>
+        </div>
+    </div>
+
+    <!-- Side Panel Column -->
+    <div class="lg:col-span-4 flex flex-col gap-gutter">
+        <!-- System Status Card -->
+        <div class="bg-surface-container-low border border-outline-variant rounded-[16px] p-stack-md relative overflow-hidden">
+            <!-- Subtle background decoration -->
+            <div class="absolute -right-6 -top-6 w-24 h-24 bg-primary/5 rounded-full blur-xl"></div>
+            <h3 class="text-body-lg font-body-lg font-semibold text-on-surface mb-stack-sm flex items-center gap-2">
+                <span class="material-symbols-outlined text-secondary">memory</span>
+                System Status
+            </h3>
+            <div class="bg-surface-container-lowest rounded-lg p-3 border border-outline-variant flex items-start gap-3">
+                <div class="mt-1 relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                </div>
+                <div>
+                    <div class="text-body-md font-body-md font-semibold text-on-surface">Local AI Node: Running</div>
+                    <div class="text-label-md font-label-md text-on-surface-variant mt-1">Latency: 42ms | GPU Active</div>
+                </div>
+            </div>
+            <div class="mt-stack-sm text-label-md font-label-md text-on-surface-variant bg-surface-container p-3 rounded-lg">
+                Ensure you are on a stable connection when adjusting threshold parameters, as the local node syncs with the central cloud database periodically.
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    // Toggle visual interaction
+    const toggle = document.getElementById('theme-toggle');
+    toggle.addEventListener('change', function() {
+        if(this.checked) {
+            this.style.transform = 'translateX(24px)';
+        } else {
+            this.style.transform = 'translateX(0)';
+        }
+    });
+    // Initialize toggle position
+    if (toggle.checked) {
+        toggle.style.transform = 'translateX(24px)';
+    }
+</script>
+{% endblock %}

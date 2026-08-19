@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}Damage Assessment System - History{% endblock %}
+
+{% block content %}
+<header class="mb-stack-lg flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+    <div>
+        <h1
+            class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-on-surface">
+            Assessment History</h1>
+        <p class="text-body-md font-body-md text-secondary mt-1">Review past vehicle damage reports and analyses.</p>
+    </div>
+    <div class="flex items-center gap-3 w-full md:w-auto">
+        <div class="relative w-full md:w-64">
+            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary"
+                style="font-size: 20px;">search</span>
+            <input
+                class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg text-body-md font-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                placeholder="Search vehicle or date..." type="text" />
+        </div>
+        <button
+            class="p-2 bg-surface-container-lowest border border-outline-variant rounded-lg text-on-surface hover:bg-surface-container-high transition-colors">
+            <span class="material-symbols-outlined">filter_list</span>
+        </button>
+    </div>
+</header>
+
+<!-- Assessment List - Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
+    {% for assessment in assessments %}
+    <article
+        class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-col sm:flex-row gap-4 hover:shadow-level-2 transition-shadow duration-200 group relative">
+        <!-- Status Chip -->
+        <div class="absolute top-4 right-4
+            {% if assessment.status == 'Completed' %}
+                bg-primary-fixed text-on-primary-fixed-variant
+            {% elif assessment.status == 'Review Required' %}
+                bg-tertiary-fixed text-on-tertiary-fixed-variant
+            {% else %}
+                bg-surface-container-high text-on-surface-variant
+            {% endif %}
+            px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">
+            {{ assessment.status }}
+        </div>
+
+        <!-- Thumbnail -->
+        <div
+            class="w-full sm:w-32 h-32 rounded-lg overflow-hidden shrink-0 bg-surface-variant flex items-center justify-center">
+            {% if assessment.image_url %}
+            <img class="w-full h-full object-cover" src="{{ assessment.image_url }}" alt="{{ assessment.vehicle }}" />
+            {% else %}
+            <span class="material-symbols-outlined text-secondary-fixed-dim"
+                style="font-size: 48px;">directions_car</span>
+            {% endif %}
+        </div>
+
+        <!-- Details -->
+        <div class="flex flex-col justify-between flex-1 py-1">
+            <div>
+                <div class="flex items-center gap-2 mb-1">
+                    <span class="material-symbols-outlined text-secondary"
+                        style="font-size: 16px;">calendar_today</span>
+                    <span class="text-label-md font-label-md text-secondary">{{ assessment.date }}</span>
+                </div>
+                <h3 class="text-title-lg font-title-lg text-on-surface">{{ assessment.vehicle }}</h3>
+                <p class="text-body-md font-body-md text-on-surface-variant mt-1">VIN: {{ assessment.vin }}</p>
+            </div>
+            <div class="flex items-center justify-between mt-4 border-t border-outline-variant pt-3">
+                <div class="flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold
+                        {% if assessment.damage_count > 0 %}
+                            bg-error-container text-on-error-container
+                        {% else %}
+                            bg-surface-container-high text-on-surface-variant
+                        {% endif %}">
+                        {{ assessment.damage_count }}
+                    </div>
+                    <span class="text-label-md font-label-md text-secondary">Damage{{ 's' if assessment.damage_count !=
+                        1 else '' }} Detected</span>
+                </div>
+                <a href="{{ url_for('assessment_results', assessment_id=assessment.id) }}"
+                    class="bg-surface-container-lowest border border-outline-variant text-on-surface text-label-md font-label-md py-1.5 px-3 rounded-lg hover:bg-surface-container-high transition-colors group-hover:border-primary group-hover:text-primary">
+                    View Report
+                </a>
+            </div>
+        </div>
+    </article>
+    {% endfor %}
+</div>
+
+<!-- Pagination -->
+<div class="mt-stack-lg flex justify-center items-center gap-4">
+    <button class="p-2 text-secondary hover:text-primary disabled:opacity-50" {% if page <=1 %}disabled{% endif %}
+        onclick="window.location.href='{{ url_for('assessment_history') }}?page={{ page - 1 }}'">
+        <span class="material-symbols-outlined">chevron_left</span>
+    </button>
+    <span class="text-label-md font-label-md text-on-surface">Page {{ page }} of {{ total_pages }}</span>
+    <button class="p-2 text-secondary hover:text-primary disabled:opacity-50" {% if page>= total_pages %}disabled{%
+        endif %}
+        onclick="window.location.href='{{ url_for('assessment_history') }}?page={{ page + 1 }}'">
+        <span class="material-symbols-outlined">chevron_right</span>
+    </button>
+</div>
+{% endblock %}

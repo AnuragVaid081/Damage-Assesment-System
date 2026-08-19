@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Damage Assessment System - Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container-lowest": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "on-secondary": "#ffffff",
+                      "surface-container-high": "#e7e7f3",
+                      "tertiary": "#943700",
+                      "tertiary-fixed": "#ffdbcd",
+                      "surface-variant": "#e1e2ed",
+                      "on-tertiary-container": "#ffede6",
+                      "surface-container-highest": "#e1e2ed",
+                      "secondary-fixed-dim": "#c0c7d6",
+                      "on-primary-fixed": "#00174b",
+                      "tertiary-container": "#bc4800",
+                      "error-container": "#ffdad6",
+                      "on-surface-variant": "#434655",
+                      "outline": "#737686",
+                      "on-background": "#191b23",
+                      "surface-bright": "#faf8ff",
+                      "on-tertiary": "#ffffff",
+                      "inverse-on-surface": "#f0f0fb",
+                      "primary-fixed": "#dbe1ff",
+                      "surface-container": "#ededf9",
+                      "secondary-fixed": "#dce2f3",
+                      "on-primary-fixed-variant": "#003ea8",
+                      "surface-dim": "#d9d9e5",
+                      "background": "#faf8ff",
+                      "surface-tint": "#0053db",
+                      "on-surface": "#191b23",
+                      "secondary-container": "#dce2f3",
+                      "on-tertiary-fixed": "#360f00",
+                      "surface-container-low": "#f3f3fe",
+                      "on-secondary-container": "#5e6572",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed-dim": "#ffb596",
+                      "outline-variant": "#c3c6d7",
+                      "on-secondary-fixed-variant": "#404754",
+                      "on-secondary-fixed": "#151c27",
+                      "on-error": "#ffffff",
+                      "inverse-primary": "#b4c5ff",
+                      "on-primary-container": "#eeefff",
+                      "primary-fixed-dim": "#b4c5ff",
+                      "surface": "#faf8ff",
+                      "secondary": "#585f6c",
+                      "primary": "#004ac6",
+                      "on-primary": "#ffffff",
+                      "on-tertiary-fixed-variant": "#7d2d00",
+                      "inverse-surface": "#2e3039",
+                      "primary-container": "#2563eb"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-desktop": "64px",
+                      "gutter": "24px",
+                      "stack-sm": "8px",
+                      "unit": "4px",
+                      "stack-lg": "32px",
+                      "margin-mobile": "16px",
+                      "stack-md": "16px"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": [
+                              "Geist"
+                      ],
+                      "headline-md": [
+                              "Geist"
+                      ],
+                      "body-md": [
+                              "Geist"
+                      ],
+                      "label-md": [
+                              "Geist"
+                      ],
+                      "title-lg": [
+                              "Geist"
+                      ],
+                      "display-lg": [
+                              "Geist"
+                      ],
+                      "body-lg": [
+                              "Geist"
+                      ],
+                      "headline-lg": [
+                              "Geist"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "title-lg": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap');
+        body { font-family: 'Geist', sans-serif; }
+        
+        /* Custom range slider styling */
+        input[type=range] {
+            -webkit-appearance: none; 
+            width: 100%; 
+            background: transparent; 
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background: #2563eb;
+            cursor: pointer;
+            margin-top: -8px; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #e1e2ed;
+            border-radius: 2px;
+        }
+        input[type=range]:focus {
+            outline: none;
+        }
+        
+        /* Toggle switch */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #2563eb;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #2563eb;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background h-full flex antialiased">
+<!-- SideNavBar (Desktop Only) -->
+<nav class="hidden md:flex flex-col bg-surface-container-low border-r border-outline-variant shadow-sm w-64 h-screen fixed left-0 top-0 p-stack-md z-40">
+<!-- Header -->
+<div class="mb-stack-lg">
+<h1 class="text-title-lg font-title-lg font-extrabold text-primary mb-unit">Damage Assessment</h1>
+<p class="text-body-md font-body-md text-on-surface-variant flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-surface-variant overflow-hidden inline-block border border-outline-variant">
+<img alt="Surveyor Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a female insurance surveyor in a bright modern office setting. She is wearing corporate attire. Clean, well-lit, shallow depth of field. Modern corporate minimal aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCADbSegYKmwO5jhqOe2W5fW0nJInt3mc9sFARTJxvqiUIpFmWpG4DAsiS94byD1Liih0_MdF52gyJz_5TKc0GIEE--nK1SF5WXlc_aThamYfbdN0WoTnGfdBaA1og5UjbnWyKxA2VfS7nRwZ-VBPdUD6AU9fRhVrWq6Hzst4IupJp3e6NQfR0SEeUzu46wmZsg-D73IsrQDYCey_GTWURy1snaMo4fQaXyLaqijkK-1IEM7nqUtIot"/>
+</span>
+                Insurance Professional
+            </p>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 flex flex-col gap-unit">
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high rounded-lg transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-body-md font-body-md">Home</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high rounded-lg transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="add_box">add_box</span>
+<span class="text-body-md font-body-md">New Assessment</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high rounded-lg transition-colors duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="text-body-md font-body-md">History</span>
+</a>
+<!-- Active State for Settings -->
+<a class="flex items-center gap-3 bg-primary-container text-on-primary-container rounded-lg px-4 py-3 font-bold scale-[0.99] transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="settings" data-weight="fill" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="text-body-md font-body-md">Settings</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 p-margin-mobile md:p-margin-desktop overflow-y-auto w-full max-w-[1280px] mx-auto">
+<header class="mb-stack-lg">
+<h2 class="text-headline-lg md:font-headline-lg font-headline-lg-mobile text-on-surface mb-unit">System Settings</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Configure AI assessment parameters and application preferences.</p>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Settings Column -->
+<div class="lg:col-span-8 flex flex-col gap-gutter">
+<!-- AI Model Settings Section -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-[16px] p-stack-md transition-shadow duration-300 hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05),0_4px_6px_-2px_rgba(0,0,0,0.025)]">
+<h3 class="text-title-lg font-title-lg text-on-surface mb-stack-md flex items-center gap-2 border-b border-outline-variant pb-unit">
+<span class="material-symbols-outlined text-primary">psychology</span>
+                        AI Assessment Logic
+                    </h3>
+<div class="flex flex-col gap-stack-md">
+<!-- Model Version -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-unit">
+<div>
+<h4 class="text-body-md font-body-md font-semibold text-on-surface">Active Model</h4>
+<p class="text-label-md font-label-md text-on-surface-variant mt-1">Select the AI inference engine for damage detection.</p>
+</div>
+<div class="bg-surface-container px-3 py-2 border border-outline-variant rounded-md flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<span class="text-body-md font-body-md text-on-surface">Assessment Logic v2.4</span>
+<span class="material-symbols-outlined text-on-surface-variant text-sm ml-2">expand_more</span>
+</div>
+</div>
+<!-- Threshold Slider -->
+<div class="mt-stack-sm pt-stack-sm border-t border-outline-variant border-dashed">
+<div class="flex justify-between items-center mb-unit">
+<h4 class="text-body-md font-body-md font-semibold text-on-surface">Detection Confidence Threshold</h4>
+<span class="text-label-md font-label-md bg-surface-container px-2 py-1 rounded text-primary font-bold" id="threshold-val">85%</span>
+</div>
+<p class="text-label-md font-label-md text-on-surface-variant mb-stack-sm">Adjust the minimum confidence level required to flag a damage anomaly. Higher values reduce false positives.</p>
+<input class="w-full" max="99" min="50" oninput="document.getElementById('threshold-val').innerText = this.value + '%'" type="range" value="85"/>
+<div class="flex justify-between text-label-md font-label-md text-on-surface-variant mt-2">
+<span>Liberal (50%)</span>
+<span>Strict (99%)</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Appearance Section -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-[16px] p-stack-md transition-shadow duration-300 hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05),0_4px_6px_-2px_rgba(0,0,0,0.025)]">
+<h3 class="text-title-lg font-title-lg text-on-surface mb-stack-md flex items-center gap-2 border-b border-outline-variant pb-unit">
+<span class="material-symbols-outlined text-primary">palette</span>
+                        Appearance
+                    </h3>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-unit">
+<div>
+<h4 class="text-body-md font-body-md font-semibold text-on-surface">Dark Mode</h4>
+<p class="text-label-md font-label-md text-on-surface-variant mt-1">Switch between light and dark themes for the application interface.</p>
+</div>
+<!-- Toggle -->
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer border-outline-variant outline-none" id="theme-toggle" name="toggle" style="top: 2px; left: 2px; transition: all 0.3s;" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-7 rounded-full bg-surface-container cursor-pointer transition-colors duration-300 border border-outline-variant" for="theme-toggle"></label>
+</div>
+</div>
+</section>
+<!-- Actions -->
+<div class="flex justify-end gap-3 mt-stack-sm">
+<button class="bg-surface-container-lowest border border-outline-variant text-on-surface px-4 py-2 rounded-lg text-body-md font-body-md hover:bg-surface-container transition-colors">Discard Changes</button>
+<button class="bg-primary-container text-on-primary-container px-4 py-2 rounded-lg text-body-md font-body-md hover:scale-[0.98] transition-transform shadow-sm">Save Settings</button>
+</div>
+</div>
+<!-- Side Panel Column -->
+<div class="lg:col-span-4 flex flex-col gap-gutter">
+<!-- System Status Card -->
+<div class="bg-surface-container-low border border-outline-variant rounded-[16px] p-stack-md relative overflow-hidden">
+<!-- Subtle background decoration -->
+<div class="absolute -right-6 -top-6 w-24 h-24 bg-primary/5 rounded-full blur-xl"></div>
+<h3 class="text-body-lg font-body-lg font-semibold text-on-surface mb-stack-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">memory</span>
+                        System Status
+                    </h3>
+<div class="bg-surface-container-lowest rounded-lg p-3 border border-outline-variant flex items-start gap-3">
+<div class="mt-1 relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+</div>
+<div>
+<div class="text-body-md font-body-md font-semibold text-on-surface">Local AI Node: Running</div>
+<div class="text-label-md font-label-md text-on-surface-variant mt-1">Latency: 42ms | GPU Active</div>
+</div>
+</div>
+<div class="mt-stack-sm text-label-md font-label-md text-on-surface-variant bg-surface-container p-3 rounded-lg">
+                        Ensure you are on a stable connection when adjusting threshold parameters, as the local node syncs with the central cloud database periodically.
+                    </div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Simple toggle visual interaction (doesn't actually change theme)
+        const toggle = document.getElementById('theme-toggle');
+        toggle.addEventListener('change', function() {
+            if(this.checked) {
+                this.style.transform = 'translateX(24px)';
+            } else {
+                this.style.transform = 'translateX(0)';
+            }
+        });
+    </script>
+</body></html>

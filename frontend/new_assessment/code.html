@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>New Assessment</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#e7e7f3",
+                        "tertiary": "#943700",
+                        "tertiary-fixed": "#ffdbcd",
+                        "surface-variant": "#e1e2ed",
+                        "on-tertiary-container": "#ffede6",
+                        "surface-container-highest": "#e1e2ed",
+                        "secondary-fixed-dim": "#c0c7d6",
+                        "on-primary-fixed": "#00174b",
+                        "tertiary-container": "#bc4800",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#434655",
+                        "outline": "#737686",
+                        "on-background": "#191b23",
+                        "surface-bright": "#faf8ff",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#f0f0fb",
+                        "primary-fixed": "#dbe1ff",
+                        "surface-container": "#ededf9",
+                        "secondary-fixed": "#dce2f3",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface-dim": "#d9d9e5",
+                        "background": "#faf8ff",
+                        "surface-tint": "#0053db",
+                        "on-surface": "#191b23",
+                        "secondary-container": "#dce2f3",
+                        "on-tertiary-fixed": "#360f00",
+                        "surface-container-low": "#f3f3fe",
+                        "on-secondary-container": "#5e6572",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "outline-variant": "#c3c6d7",
+                        "on-secondary-fixed-variant": "#404754",
+                        "on-secondary-fixed": "#151c27",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#b4c5ff",
+                        "on-primary-container": "#eeefff",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "surface": "#faf8ff",
+                        "secondary": "#585f6c",
+                        "primary": "#004ac6",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "inverse-surface": "#2e3039",
+                        "primary-container": "#2563eb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "stack-sm": "8px",
+                        "unit": "4px",
+                        "stack-lg": "32px",
+                        "margin-mobile": "16px",
+                        "stack-md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "body-md": ["Geist"],
+                        "label-md": ["Geist"],
+                        "title-lg": ["Geist"],
+                        "display-lg": ["Geist"],
+                        "body-lg": ["Geist"],
+                        "headline-lg": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "title-lg": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Geist', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar (from JSON) -->
+<nav class="hidden md:flex fixed left-0 top-0 h-full flex-col p-stack-md z-40 bg-surface-container-low border-r border-outline-variant shadow-sm w-64">
+<div class="flex items-center gap-3 mb-8 px-4 mt-4">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">shield</span>
+<div>
+<h1 class="text-title-lg font-title-lg font-extrabold text-primary">Damage Assessment</h1>
+<p class="text-label-md font-label-md text-on-surface-variant">Insurance Professional</p>
+</div>
+</div>
+<div class="flex flex-col gap-2 flex-grow">
+<!-- Home -->
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high rounded-lg transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-body-md font-body-md">Home</span>
+</a>
+<!-- New Assessment (Active) -->
+<a class="flex items-center gap-3 bg-primary-container text-on-primary-container rounded-lg px-4 py-3 font-bold scale-[0.99] transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_box</span>
+<span class="text-body-md font-body-md">New Assessment</span>
+</a>
+<!-- History -->
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high rounded-lg transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="text-body-md font-body-md">History</span>
+</a>
+<!-- Settings -->
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high rounded-lg transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-body-md font-body-md">Settings</span>
+</a>
+</div>
+<div class="mt-auto px-4 pb-4">
+<div class="flex items-center gap-3">
+<img alt="Surveyor Profile" class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="A professional headshot of an insurance surveyor in a bright, modern office setting. The person is smiling slightly, conveying trust and competence. Soft, diffused lighting enhances the clean, corporate aesthetic, complementing a light-mode UI design. The background is slightly blurred." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPPptjxwnWyIHktUlgEbu6VhZMLeTWbM8WsPUaTbzZDK6E9QRyTTBuMPte9NTaQ4o-EeNbiyV9x6cqrnWqEZ4_5C_PYQjU-7MT2DF9zapqLT8WjxpbQSexqHMe-SMI94VLbPfUGmcoCd3FIR_lyQiNFoF6wKH6A-r6bdoAV2B_qleBh_NOhmAY_jS77n760RTTIpa8hCPdhSvSlk1PtqmE5d3pLWjbK-GninomyKhwkkVlwvzE2WsW"/>
+<div>
+<p class="text-body-md font-body-md font-semibold text-on-surface">Alex Mercer</p>
+<p class="text-label-md font-label-md text-on-surface-variant">Senior Adjuster</p>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 ml-0 md:ml-64 p-margin-mobile md:p-margin-desktop bg-background max-w-[1280px] mx-auto w-full">
+<!-- Header -->
+<header class="mb-stack-lg">
+<h2 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-on-background mb-stack-sm">New Assessment</h2>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Upload vehicle images and provide details to initiate the AI damage analysis.</p>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Upload & Preview -->
+<div class="lg:col-span-8 flex flex-col gap-gutter">
+<!-- Upload Zone -->
+<div class="bg-surface-container-lowest border-2 border-dashed border-outline-variant hover:border-primary transition-colors duration-300 rounded-xl p-stack-lg flex flex-col items-center justify-center text-center min-h-[300px] cursor-pointer group">
+<div class="w-16 h-16 bg-surface-container-low text-primary rounded-full flex items-center justify-center mb-stack-md group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-3xl">cloud_upload</span>
+</div>
+<h3 class="text-title-lg font-title-lg text-on-surface mb-stack-sm">Drag & Drop Vehicle Images</h3>
+<p class="text-body-md font-body-md text-on-surface-variant max-w-md mx-auto mb-stack-md">Upload clear photos of the damage from multiple angles. JPG, PNG formats supported. Max 50MB total.</p>
+<button class="bg-surface-container-high text-on-surface px-6 py-2 rounded-lg text-label-md font-label-md font-semibold hover:bg-surface-dim transition-colors border border-outline-variant">Browse Files</button>
+</div>
+<!-- Image Preview Grid (Empty States) -->
+<div>
+<h4 class="text-title-lg font-title-lg text-on-surface mb-stack-md">Image Preview</h4>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-stack-md">
+<div class="aspect-square bg-surface-container-low border border-outline-variant rounded-lg flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined mb-2 text-secondary-fixed-dim">image</span>
+<span class="text-label-md font-label-md text-secondary-fixed-dim">Front View</span>
+</div>
+<div class="aspect-square bg-surface-container-low border border-outline-variant rounded-lg flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined mb-2 text-secondary-fixed-dim">image</span>
+<span class="text-label-md font-label-md text-secondary-fixed-dim">Rear View</span>
+</div>
+<div class="aspect-square bg-surface-container-low border border-outline-variant rounded-lg flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined mb-2 text-secondary-fixed-dim">image</span>
+<span class="text-label-md font-label-md text-secondary-fixed-dim">Left Side</span>
+</div>
+<div class="aspect-square bg-surface-container-low border border-outline-variant rounded-lg flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined mb-2 text-secondary-fixed-dim">image</span>
+<span class="text-label-md font-label-md text-secondary-fixed-dim">Right Side</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Form & Actions -->
+<div class="lg:col-span-4 flex flex-col gap-gutter">
+<!-- Vehicle Details Form -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-md shadow-[0_4px_6px_-2px_rgba(0,0,0,0.025)]">
+<h3 class="text-title-lg font-title-lg text-on-surface mb-stack-md flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">directions_car</span>
+                        Vehicle Details
+                    </h3>
+<form class="flex flex-col gap-stack-md">
+<div>
+<label class="block text-label-md font-label-md text-on-surface-variant mb-unit">Make</label>
+<input class="w-full bg-background border border-outline-variant rounded-lg px-3 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary-fixed transition-all" placeholder="e.g. Toyota" type="text"/>
+</div>
+<div>
+<label class="block text-label-md font-label-md text-on-surface-variant mb-unit">Model</label>
+<input class="w-full bg-background border border-outline-variant rounded-lg px-3 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary-fixed transition-all" placeholder="e.g. Camry" type="text"/>
+</div>
+<div>
+<label class="block text-label-md font-label-md text-on-surface-variant mb-unit">Year</label>
+<input class="w-full bg-background border border-outline-variant rounded-lg px-3 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary-fixed transition-all" placeholder="YYYY" type="number"/>
+</div>
+<div>
+<label class="block text-label-md font-label-md text-on-surface-variant mb-unit">VIN (Optional)</label>
+<input class="w-full bg-background border border-outline-variant rounded-lg px-3 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary-fixed transition-all" placeholder="17-character VIN" type="text"/>
+</div>
+</form>
+</div>
+<!-- Actions -->
+<div class="mt-auto flex flex-col gap-stack-sm pt-stack-md border-t border-outline-variant">
+<button class="w-full bg-primary-container opacity-50 cursor-not-allowed text-on-primary-container py-3 rounded-lg text-title-lg font-title-lg font-semibold flex items-center justify-center gap-2 transition-all">
+<span class="material-symbols-outlined">analytics</span>
+                        Analyze Damage
+                    </button>
+<p class="text-center text-label-md font-label-md text-on-surface-variant">Upload images to enable analysis.</p>
+</div>
+</div>
+</div>
+</main>
+</body></html>

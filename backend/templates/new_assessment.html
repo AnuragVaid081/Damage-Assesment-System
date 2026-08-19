@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block title %}New Assessment{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<header class="mb-stack-lg">
+    <h2 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-on-background mb-stack-sm">New Assessment</h2>
+    <p class="text-body-lg font-body-lg text-on-surface-variant">Upload vehicle images and provide details to initiate the AI damage analysis.</p>
+</header>
+
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+    <!-- Left Column: Upload & Preview -->
+    <div class="lg:col-span-8 flex flex-col gap-gutter">
+        <!-- Upload Zone -->
+        <form id="assessment-form" action="{{ url_for('submit_assessment') }}" method="POST" enctype="multipart/form-data">
+            <div class="bg-surface-container-lowest border-2 border-dashed border-outline-variant hover:border-primary transition-colors duration-300 rounded-xl p-stack-lg flex flex-col items-center justify-center text-center min-h-[300px] cursor-pointer group"
+                 onclick="document.getElementById('file-input').click();">
+                <div class="w-16 h-16 bg-surface-container-low text-primary rounded-full flex items-center justify-center mb-stack-md group-hover:scale-110 transition-transform duration-300">
+                    <span class="material-symbols-outlined text-3xl">cloud_upload</span>
+                </div>
+                <h3 class="text-title-lg font-title-lg text-on-surface mb-stack-sm">Drag & Drop Vehicle Images</h3>
+                <p class="text-body-md font-body-md text-on-surface-variant max-w-md mx-auto mb-stack-md">Upload clear photos of the damage from multiple angles. JPG, PNG formats supported. Max 50MB total.</p>
+                <label class="bg-surface-container-high text-on-surface px-6 py-2 rounded-lg text-label-md font-label-md font-semibold hover:bg-surface-dim transition-colors border border-outline-variant cursor-pointer">
+                    Browse Files
+                    <input type="file" id="file-input" name="images" multiple accept="image/jpeg,image/png" class="hidden"/>
+                </label>
+            </div>
+
+            <!-- Image Preview Grid (Empty States) -->
+            <div class="mt-gutter">
+                <h4 class="text-title-lg font-title-lg text-on-surface mb-stack-md">Image Preview</h4>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-stack-md" id="preview-grid">
+                    <div class="aspect-square bg-surface-container-low border border-outline-variant rounded-lg flex flex-col items-center justify-center text-on-surface-variant">
+                        <span class="material-symbols-outlined mb-2 text-secondary-fixed-dim">image</span>
+                        <span class="text-label-md font-label-md text-secondary-fixed-dim">Front View</span>
+                    </div>
+                    <div class="aspect-square bg-surface-container-low border border-outline-variant rounded-lg flex flex-col items-center justify-center text-on-surface-variant">
+                        <span class="material-symbols-outlined mb-2 text-secondary-fixed-dim">image</span>
+                        <span class="text-label-md font-label-md text-secondary-fixed-dim">Rear View</span>
+                    </div>
+                    <div class="aspect-square bg-surface-container-low border border-outline-variant rounded-lg flex flex-col items-center justify-center text-on-surface-variant">
+                        <span class="material-symbols-outlined mb-2 text-secondary-fixed-dim">image</span>
+                        <span class="text-label-md font-label-md text-secondary-fixed-dim">Left Side</span>
+                    </div>
+                    <div class="aspect-square bg-surface-container-low border border-outline-variant rounded-lg flex flex-col items-center justify-center text-on-surface-variant">
+                        <span class="material-symbols-outlined mb-2 text-secondary-fixed-dim">image</span>
+                        <span class="text-label-md font-label-md text-secondary-fixed-dim">Right Side</span>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <!-- Right Column: Form & Actions -->
+    <div class="lg:col-span-4 flex flex-col gap-gutter">
+        <!-- Vehicle Details Form -->
+        <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-md shadow-[0_4px_6px_-2px_rgba(0,0,0,0.025)]">
+            <h3 class="text-title-lg font-title-lg text-on-surface mb-stack-md flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary">directions_car</span>
+                Vehicle Details
+            </h3>
+            <div class="flex flex-col gap-stack-md">
+                <div>
+                    <label class="block text-label-md font-label-md text-on-surface-variant mb-unit" for="make">Make</label>
+                    <input id="make" name="make" class="w-full bg-background border border-outline-variant rounded-lg px-3 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary-fixed transition-all" placeholder="e.g. Toyota" type="text"/>
+                </div>
+                <div>
+                    <label class="block text-label-md font-label-md text-on-surface-variant mb-unit" for="model">Model</label>
+                    <input id="model" name="model" class="w-full bg-background border border-outline-variant rounded-lg px-3 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary-fixed transition-all" placeholder="e.g. Camry" type="text"/>
+                </div>
+                <div>
+                    <label class="block text-label-md font-label-md text-on-surface-variant mb-unit" for="year">Year</label>
+                    <input id="year" name="year" class="w-full bg-background border border-outline-variant rounded-lg px-3 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary-fixed transition-all" placeholder="YYYY" type="number"/>
+                </div>
+                <div>
+                    <label class="block text-label-md font-label-md text-on-surface-variant mb-unit" for="vin">VIN (Optional)</label>
+                    <input id="vin" name="vin" class="w-full bg-background border border-outline-variant rounded-lg px-3 py-2 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary-fixed transition-all" placeholder="17-character VIN" type="text"/>
+                </div>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="mt-auto flex flex-col gap-stack-sm pt-stack-md border-t border-outline-variant">
+            <button type="submit" id="analyze-btn"
+                    class="w-full bg-primary-container opacity-50 cursor-not-allowed text-on-primary-container py-3 rounded-lg text-title-lg font-title-lg font-semibold flex items-center justify-center gap-2 transition-all"
+                    disabled>
+                <span class="material-symbols-outlined">analytics</span>
+                Analyze Damage
+            </button>
+            <p class="text-center text-label-md font-label-md text-on-surface-variant" id="upload-hint">Upload images to enable analysis.</p>
+        </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    // Enable the Analyze button when files are selected
+    const fileInput = document.getElementById('file-input');
+    const analyzeBtn = document.getElementById('analyze-btn');
+    const uploadHint = document.getElementById('upload-hint');
+
+    fileInput.addEventListener('change', function() {
+        if (this.files.length > 0) {
+            analyzeBtn.disabled = false;
+            analyzeBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            analyzeBtn.classList.add('hover:scale-[0.98]', 'cursor-pointer', 'shadow-sm');
+            uploadHint.textContent = this.files.length + ' file(s) selected. Ready to analyze.';
+
+            // Show image previews
+            const grid = document.getElementById('preview-grid');
+            grid.innerHTML = '';
+            const labels = ['Front View', 'Rear View', 'Left Side', 'Right Side'];
+            for (let i = 0; i < Math.min(this.files.length, 4); i++) {
+                const file = this.files[i];
+                const reader = new FileReader();
+                const label = labels[i] || 'Image ' + (i + 1);
+                reader.onload = function(e) {
+                    const div = document.createElement('div');
+                    div.className = 'aspect-square bg-surface-container-low border border-outline-variant rounded-lg overflow-hidden relative';
+                    div.innerHTML = `
+                        <img src="${e.target.result}" class="w-full h-full object-cover" alt="${label}"/>
+                        <span class="absolute bottom-1 left-1 text-label-md font-label-md bg-black/50 text-white px-2 py-0.5 rounded">${label}</span>
+                    `;
+                    grid.appendChild(div);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    });
+</script>
+{% endblock %}

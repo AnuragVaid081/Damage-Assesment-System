@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Damage-Assessment-System - Home{% endblock %}
+
+{% block content %}
+<div class="min-h-full flex flex-col justify-center items-center text-center py-stack-lg">
+    <!-- Hero Section -->
+    <div class="max-w-3xl flex flex-col items-center">
+        <div class="mb-6 p-4 rounded-full bg-surface-container-low shadow-sm border border-outline-variant/30 flex items-center justify-center w-24 h-24">
+            <span class="material-symbols-outlined text-primary text-5xl" style="font-variation-settings: 'FILL' 1;">directions_car</span>
+        </div>
+        <h1 class="text-display-lg font-display-lg text-on-surface mb-6 leading-tight">
+            Damage-Assessment-System
+        </h1>
+        <p class="text-headline-md font-headline-md text-on-surface-variant mb-12 max-w-2xl">
+            Instant AI-powered vehicle damage analysis for insurance professionals.
+        </p>
+        <!-- Main CTA -->
+        <a href="{{ url_for('new_assessment') }}"
+           class="bg-primary hover:bg-surface-tint text-on-primary rounded-lg px-8 py-4 flex items-center gap-3 transition-all duration-200 shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05),0_4px_6px_-2px_rgba(0,0,0,0.025)] active:scale-[0.98]">
+            <span class="material-symbols-outlined text-xl">document_scanner</span>
+            <span class="text-title-lg font-title-lg">Start New Assessment</span>
+        </a>
+    </div>
+    <!-- Feature Cards -->
+    <div class="mt-24 w-full max-w-4xl opacity-60">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm text-left">
+                <span class="material-symbols-outlined text-primary mb-4">upload_file</span>
+                <h3 class="text-title-lg font-title-lg mb-2">Upload Imagery</h3>
+                <p class="text-body-md text-on-surface-variant">Securely upload high-resolution photos of vehicle damage for immediate processing.</p>
+            </div>
+            <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm text-left">
+                <span class="material-symbols-outlined text-primary mb-4">memory</span>
+                <h3 class="text-title-lg font-title-lg mb-2">AI Analysis</h3>
+                <p class="text-body-md text-on-surface-variant">Our models detect anomalies and categorize damage severity with high confidence.</p>
+            </div>
+            <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm text-left">
+                <span class="material-symbols-outlined text-primary mb-4">description</span>
+                <h3 class="text-title-lg font-title-lg mb-2">Generate Report</h3>
+                <p class="text-body-md text-on-surface-variant">Receive a comprehensive, exportable assessment report for your insurance workflow.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

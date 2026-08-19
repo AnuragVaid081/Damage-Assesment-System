@@ -1,2 +1,29 @@
-data/
+# Python
 .venv/
+__pycache__/
+*.py[cod]
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Kaggle credentials
+kaggle.json
+.kaggle/
+
+# Datasets
+data/
+VehiDD/
+*.zip
+
+# ML generated files
+ai/data/vehide_yolo/
+ai/weights/
+*.pt
+*.onnx
+*.pkl
+
+# Logs / caches
+*.log
+.pytest_cache/

@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Assessment Results - Damage-Assessment-System</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Assessment Results - Damage-Assessment-System</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -101,156 +108,203 @@
             }
         }
     </script>
-<style>
+    <style>
         .pulse-pin {
             animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
+
         @keyframes pulse-ring {
-            0% { transform: scale(0.8); opacity: 1; }
-            100% { transform: scale(2.5); opacity: 0; }
+            0% {
+                transform: scale(0.8);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(2.5);
+                opacity: 0;
+            }
         }
     </style>
 </head>
+
 <body class="bg-background text-on-background font-body-md min-h-screen flex">
-<!-- SideNavBar -->
-<nav class="hidden md:flex fixed left-0 top-0 h-full flex-col p-stack-md z-40 bg-surface-container-low border-r border-outline-variant shadow-sm w-64">
-<div class="mb-stack-lg">
-<h1 class="text-title-lg font-title-lg font-extrabold text-primary">Damage Assessment</h1>
-<p class="text-label-md font-label-md text-on-surface-variant mt-1">Insurance Professional</p>
-</div>
-<div class="flex-1 flex flex-col gap-2">
-<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high rounded-lg transition-colors duration-200" href="#">
-<span class="material-symbols-outlined">home</span>
-<span class="text-label-md font-label-md">Home</span>
-</a>
-<a class="flex items-center gap-3 bg-primary-container text-on-primary-container rounded-lg px-4 py-3 font-bold scale-[0.99] transition-transform" href="#">
-<span class="material-symbols-outlined">add_box</span>
-<span class="text-label-md font-label-md">New Assessment</span>
-</a>
-<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high rounded-lg transition-colors duration-200" href="#">
-<span class="material-symbols-outlined">history</span>
-<span class="text-label-md font-label-md">History</span>
-</a>
-<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high rounded-lg transition-colors duration-200" href="#">
-<span class="material-symbols-outlined">settings</span>
-<span class="text-label-md font-label-md">Settings</span>
-</a>
-</div>
-<button class="w-full mt-auto bg-primary text-on-primary text-label-md font-label-md py-3 rounded-lg hover:opacity-90 transition-opacity flex justify-center items-center gap-2">
-<span class="material-symbols-outlined text-[18px]">add</span>
+    <!-- SideNavBar -->
+    <nav
+        class="hidden md:flex fixed left-0 top-0 h-full flex-col p-stack-md z-40 bg-surface-container-low border-r border-outline-variant shadow-sm w-64">
+        <div class="mb-stack-lg">
+            <h1 class="text-title-lg font-title-lg font-extrabold text-primary">Damage Assessment</h1>
+            <p class="text-label-md font-label-md text-on-surface-variant mt-1">Insurance Professional</p>
+        </div>
+        <div class="flex-1 flex flex-col gap-2">
+            <a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high rounded-lg transition-colors duration-200"
+                href="#">
+                <span class="material-symbols-outlined">home</span>
+                <span class="text-label-md font-label-md">Home</span>
+            </a>
+            <a class="flex items-center gap-3 bg-primary-container text-on-primary-container rounded-lg px-4 py-3 font-bold scale-[0.99] transition-transform"
+                href="#">
+                <span class="material-symbols-outlined">add_box</span>
+                <span class="text-label-md font-label-md">New Assessment</span>
+            </a>
+            <a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high rounded-lg transition-colors duration-200"
+                href="#">
+                <span class="material-symbols-outlined">history</span>
+                <span class="text-label-md font-label-md">History</span>
+            </a>
+            <a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high rounded-lg transition-colors duration-200"
+                href="#">
+                <span class="material-symbols-outlined">settings</span>
+                <span class="text-label-md font-label-md">Settings</span>
+            </a>
+        </div>
+        <button
+            class="w-full mt-auto bg-primary text-on-primary text-label-md font-label-md py-3 rounded-lg hover:opacity-90 transition-opacity flex justify-center items-center gap-2">
+            <span class="material-symbols-outlined text-[18px]">add</span>
             New Assessment
         </button>
-</nav>
-<!-- Main Content -->
-<main class="flex-1 md:ml-64 p-margin-mobile md:p-margin-desktop max-w-[1280px] mx-auto w-full">
-<!-- Header -->
-<header class="flex flex-col md:flex-row md:justify-between md:items-end mb-stack-lg gap-4">
-<div>
-<p class="text-label-md font-label-md text-primary font-bold mb-1">ASSESSMENT ID: #DA-2023-8941</p>
-<h2 class="text-headline-md font-headline-md text-on-background">Assessment Results</h2>
-</div>
-<div class="flex gap-3">
-<button class="px-4 py-2 border border-outline-variant bg-surface text-on-surface rounded-lg hover:bg-surface-container-low transition-colors text-label-md font-label-md flex items-center gap-2">
-<span class="material-symbols-outlined text-[18px]">download</span>
+    </nav>
+    <!-- Main Content -->
+    <main class="flex-1 md:ml-64 p-margin-mobile md:p-margin-desktop max-w-[1280px] mx-auto w-full">
+        <!-- Header -->
+        <header class="flex flex-col md:flex-row md:justify-between md:items-end mb-stack-lg gap-4">
+            <div>
+                <p class="text-label-md font-label-md text-primary font-bold mb-1">ASSESSMENT ID: #DA-2023-8941</p>
+                <h2 class="text-headline-md font-headline-md text-on-background">Assessment Results</h2>
+            </div>
+            <div class="flex gap-3">
+                <button
+                    class="px-4 py-2 border border-outline-variant bg-surface text-on-surface rounded-lg hover:bg-surface-container-low transition-colors text-label-md font-label-md flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]">download</span>
                     Download Report (PDF)
                 </button>
-<button class="px-4 py-2 bg-primary text-on-primary rounded-lg hover:bg-primary/90 transition-colors text-label-md font-label-md active:scale-95">
+                <button
+                    class="px-4 py-2 bg-primary text-on-primary rounded-lg hover:bg-primary/90 transition-colors text-label-md font-label-md active:scale-95">
                     Submit to Claims
                 </button>
-</div>
-</header>
-<!-- Bento Grid Layout -->
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
-<!-- Image Inspector Panel (Spans 8 cols on lg) -->
-<div class="lg:col-span-8 flex flex-col gap-gutter">
-<div class="bg-surface rounded-xl border border-outline-variant p-4 relative overflow-hidden group">
-<!-- Image Container -->
-<div class="relative w-full aspect-video rounded-lg overflow-hidden bg-surface-container-highest">
-<img class="object-cover w-full h-full" data-alt="A high-resolution photograph of a silver sedan parked in a well-lit indoor assessment bay. The vehicle shows significant collision damage to the rear passenger side, specifically the bumper and quarter panel. The lighting is clinical and bright, highlighting the crumple zones and paint scratches. The aesthetic is clean, objective, and documentary, suitable for an insurance claim AI analysis." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLeKbywxvsphc6r9nEgn1kfp1va0mADX780HGGS2kDhKubf6C1NQj1S-7Iy6rZeTEaxa-iQOC1v_eQbwme9s13pFMu69Qqf2K6agh-H90J7KxhfyahE8X7yN5v0zkMPYnL92ZmGJCM1eC5bmpqxe0T0y_Rn6G6cxucDrnRz4o17Z1yL8DLvbiz-XaMGumr0RrUb2Z-D2I5RmSfg3o0rQRb2ZJcFA7B4zhv-4oArtkQX8z_l8lsD8eM"/>
-<!-- Bounding Box 1 -->
-<div class="absolute border-2 border-[#ba1a1a] bg-[#ba1a1a]/10 top-[30%] left-[60%] w-[25%] h-[40%] rounded-sm hover:bg-[#ba1a1a]/20 transition-colors cursor-pointer group/box">
-<div class="absolute -top-3 -right-3 w-6 h-6 bg-[#ba1a1a] rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg">1</div>
-</div>
-<!-- Bounding Box 2 -->
-<div class="absolute border-2 border-[#bc4800] bg-[#bc4800]/10 top-[60%] left-[45%] w-[15%] h-[20%] rounded-sm hover:bg-[#bc4800]/20 transition-colors cursor-pointer group/box">
-<div class="absolute -top-3 -right-3 w-6 h-6 bg-[#bc4800] rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg">2</div>
-</div>
-</div>
-</div>
-<!-- AI Summary Card -->
-<div class="bg-surface rounded-xl border border-outline-variant p-6 hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05),0_4px_6px_-2px_rgba(0,0,0,0.025)] transition-shadow duration-300">
-<div class="flex items-center gap-2 mb-4 text-primary">
-<span class="material-symbols-outlined">auto_awesome</span>
-<h3 class="text-title-lg font-title-lg">AI Damage Summary</h3>
-</div>
-<p class="text-body-md font-body-md text-on-surface-variant leading-relaxed">
-                        Computer vision analysis indicates a high-velocity impact to the rear passenger side. Primary structural deformation is observed on the rear bumper cover and the adjacent quarter panel. Paint transfer and deep striations suggest contact with a stationary object. The underlying crash bar and energy absorbers require physical inspection as secondary damage is highly probable (Confidence: 89%). No glass breakage detected.
+            </div>
+        </header>
+        <!-- Bento Grid Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+            <!-- Image Inspector Panel (Spans 8 cols on lg) -->
+            <div class="lg:col-span-8 flex flex-col gap-gutter">
+                <div class="bg-surface rounded-xl border border-outline-variant p-4 relative overflow-hidden group">
+                    <!-- Image Container -->
+                    <div class="relative w-full aspect-video rounded-lg overflow-hidden bg-surface-container-highest">
+                        <img class="object-cover w-full h-full"
+                            data-alt="A high-resolution photograph of a silver sedan parked in a well-lit indoor assessment bay. The vehicle shows significant collision damage to the rear passenger side, specifically the bumper and quarter panel. The lighting is clinical and bright, highlighting the crumple zones and paint scratches. The aesthetic is clean, objective, and documentary, suitable for an insurance claim AI analysis."
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLeKbywxvsphc6r9nEgn1kfp1va0mADX780HGGS2kDhKubf6C1NQj1S-7Iy6rZeTEaxa-iQOC1v_eQbwme9s13pFMu69Qqf2K6agh-H90J7KxhfyahE8X7yN5v0zkMPYnL92ZmGJCM1eC5bmpqxe0T0y_Rn6G6cxucDrnRz4o17Z1yL8DLvbiz-XaMGumr0RrUb2Z-D2I5RmSfg3o0rQRb2ZJcFA7B4zhv-4oArtkQX8z_l8lsD8eM" />
+                        <!-- Bounding Box 1 -->
+                        <div
+                            class="absolute border-2 border-[#ba1a1a] bg-[#ba1a1a]/10 top-[30%] left-[60%] w-[25%] h-[40%] rounded-sm hover:bg-[#ba1a1a]/20 transition-colors cursor-pointer group/box">
+                            <div
+                                class="absolute -top-3 -right-3 w-6 h-6 bg-[#ba1a1a] rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg">
+                                1</div>
+                        </div>
+                        <!-- Bounding Box 2 -->
+                        <div
+                            class="absolute border-2 border-[#bc4800] bg-[#bc4800]/10 top-[60%] left-[45%] w-[15%] h-[20%] rounded-sm hover:bg-[#bc4800]/20 transition-colors cursor-pointer group/box">
+                            <div
+                                class="absolute -top-3 -right-3 w-6 h-6 bg-[#bc4800] rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg">
+                                2</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- AI Summary Card -->
+                <div
+                    class="bg-surface rounded-xl border border-outline-variant p-6 hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05),0_4px_6px_-2px_rgba(0,0,0,0.025)] transition-shadow duration-300">
+                    <div class="flex items-center gap-2 mb-4 text-primary">
+                        <span class="material-symbols-outlined">auto_awesome</span>
+                        <h3 class="text-title-lg font-title-lg">AI Damage Summary</h3>
+                    </div>
+                    <p class="text-body-md font-body-md text-on-surface-variant leading-relaxed">
+                        Computer vision analysis indicates a high-velocity impact to the rear passenger side. Primary
+                        structural deformation is observed on the rear bumper cover and the adjacent quarter panel.
+                        Paint transfer and deep striations suggest contact with a stationary object. The underlying
+                        crash bar and energy absorbers require physical inspection as secondary damage is highly
+                        probable (Confidence: 89%). No glass breakage detected.
                     </p>
-</div>
-</div>
-<!-- Details Panel (Spans 4 cols on lg) -->
-<div class="lg:col-span-4 flex flex-col gap-4">
-<h3 class="text-title-lg font-title-lg mb-2">Detected Anomalies</h3>
-<!-- Damage Card 1 -->
-<div class="bg-surface rounded-xl border border-outline-variant p-4 hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)] transition-all duration-300 -translate-y-0 hover:-translate-y-1 cursor-pointer">
-<div class="flex justify-between items-start mb-3">
-<div class="flex items-center gap-2">
-<span class="w-6 h-6 bg-[#ba1a1a] text-white rounded-full flex items-center justify-center text-xs font-bold">1</span>
-<span class="text-label-md font-label-md font-bold text-on-background">Rear Bumper</span>
-</div>
-<span class="px-2 py-1 bg-surface-container-highest text-on-surface-variant rounded text-[10px] font-bold tracking-wider">94% CONFIDENCE</span>
-</div>
-<div class="flex flex-col gap-2">
-<div class="flex justify-between items-center text-body-md font-body-md">
-<span class="text-on-surface-variant">Type</span>
-<span class="text-on-background font-medium">Severe Dent / Rupture</span>
-</div>
-<div class="flex justify-between items-center text-body-md font-body-md">
-<span class="text-on-surface-variant">Severity</span>
-<span class="px-2 py-0.5 bg-[#ffdad6] text-[#93000a] rounded text-label-md font-label-md">High</span>
-</div>
-<div class="flex justify-between items-center text-body-md font-body-md">
-<span class="text-on-surface-variant">Action</span>
-<span class="text-on-background font-medium">Replace</span>
-</div>
-</div>
-</div>
-<!-- Damage Card 2 -->
-<div class="bg-surface rounded-xl border border-outline-variant p-4 hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)] transition-all duration-300 -translate-y-0 hover:-translate-y-1 cursor-pointer">
-<div class="flex justify-between items-start mb-3">
-<div class="flex items-center gap-2">
-<span class="w-6 h-6 bg-[#bc4800] text-white rounded-full flex items-center justify-center text-xs font-bold">2</span>
-<span class="text-label-md font-label-md font-bold text-on-background">Quarter Panel (Pass.)</span>
-</div>
-<span class="px-2 py-1 bg-surface-container-highest text-on-surface-variant rounded text-[10px] font-bold tracking-wider">82% CONFIDENCE</span>
-</div>
-<div class="flex flex-col gap-2">
-<div class="flex justify-between items-center text-body-md font-body-md">
-<span class="text-on-surface-variant">Type</span>
-<span class="text-on-background font-medium">Scrape / Paint Transfer</span>
-</div>
-<div class="flex justify-between items-center text-body-md font-body-md">
-<span class="text-on-surface-variant">Severity</span>
-<span class="px-2 py-0.5 bg-[#ffede6] text-[#bc4800] rounded text-label-md font-label-md">Medium</span>
-</div>
-<div class="flex justify-between items-center text-body-md font-body-md">
-<span class="text-on-surface-variant">Action</span>
-<span class="text-on-background font-medium">Repair &amp; Paint</span>
-</div>
-</div>
-</div>
-<!-- Safe Card (Example of no damage) -->
-<div class="bg-surface-bright rounded-xl border border-outline-variant/50 p-4 opacity-75">
-<div class="flex justify-between items-start mb-2">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-green-600 text-[20px]">check_circle</span>
-<span class="text-label-md font-label-md font-bold text-on-background">Tail Light Assembly</span>
-</div>
-<span class="px-2 py-1 bg-surface-container-highest text-on-surface-variant rounded text-[10px] font-bold tracking-wider">99% CONFIDENCE</span>
-</div>
-<p class="text-body-md font-body-md text-on-surface-variant">No structural damage or cracks detected.</p>
-</div>
-</div>
-</div>
-</main>
-</body></html>
+                </div>
+            </div>
+            <!-- Details Panel (Spans 4 cols on lg) -->
+            <div class="lg:col-span-4 flex flex-col gap-4">
+                <h3 class="text-title-lg font-title-lg mb-2">Detected Anomalies</h3>
+                <!-- Damage Card 1 -->
+                <div
+                    class="bg-surface rounded-xl border border-outline-variant p-4 hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)] transition-all duration-300 -translate-y-0 hover:-translate-y-1 cursor-pointer">
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="flex items-center gap-2">
+                            <span
+                                class="w-6 h-6 bg-[#ba1a1a] text-white rounded-full flex items-center justify-center text-xs font-bold">1</span>
+                            <span class="text-label-md font-label-md font-bold text-on-background">Rear Bumper</span>
+                        </div>
+                        <span
+                            class="px-2 py-1 bg-surface-container-highest text-on-surface-variant rounded text-[10px] font-bold tracking-wider">94%
+                            CONFIDENCE</span>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <div class="flex justify-between items-center text-body-md font-body-md">
+                            <span class="text-on-surface-variant">Type</span>
+                            <span class="text-on-background font-medium">Severe Dent / Rupture</span>
+                        </div>
+                        <div class="flex justify-between items-center text-body-md font-body-md">
+                            <span class="text-on-surface-variant">Severity</span>
+                            <span
+                                class="px-2 py-0.5 bg-[#ffdad6] text-[#93000a] rounded text-label-md font-label-md">High</span>
+                        </div>
+                        <div class="flex justify-between items-center text-body-md font-body-md">
+                            <span class="text-on-surface-variant">Action</span>
+                            <span class="text-on-background font-medium">Replace</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Damage Card 2 -->
+                <div
+                    class="bg-surface rounded-xl border border-outline-variant p-4 hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)] transition-all duration-300 -translate-y-0 hover:-translate-y-1 cursor-pointer">
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="flex items-center gap-2">
+                            <span
+                                class="w-6 h-6 bg-[#bc4800] text-white rounded-full flex items-center justify-center text-xs font-bold">2</span>
+                            <span class="text-label-md font-label-md font-bold text-on-background">Quarter Panel
+                                (Pass.)</span>
+                        </div>
+                        <span
+                            class="px-2 py-1 bg-surface-container-highest text-on-surface-variant rounded text-[10px] font-bold tracking-wider">82%
+                            CONFIDENCE</span>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <div class="flex justify-between items-center text-body-md font-body-md">
+                            <span class="text-on-surface-variant">Type</span>
+                            <span class="text-on-background font-medium">Scrape / Paint Transfer</span>
+                        </div>
+                        <div class="flex justify-between items-center text-body-md font-body-md">
+                            <span class="text-on-surface-variant">Severity</span>
+                            <span
+                                class="px-2 py-0.5 bg-[#ffede6] text-[#bc4800] rounded text-label-md font-label-md">Medium</span>
+                        </div>
+                        <div class="flex justify-between items-center text-body-md font-body-md">
+                            <span class="text-on-surface-variant">Action</span>
+                            <span class="text-on-background font-medium">Repair &amp; Paint</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Safe Card (Example of no damage) -->
+                <div class="bg-surface-bright rounded-xl border border-outline-variant/50 p-4 opacity-75">
+                    <div class="flex justify-between items-start mb-2">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-green-600 text-[20px]">check_circle</span>
+                            <span class="text-label-md font-label-md font-bold text-on-background">Tail Light
+                                Assembly</span>
+                        </div>
+                        <span
+                            class="px-2 py-1 bg-surface-container-highest text-on-surface-variant rounded text-[10px] font-bold tracking-wider">99%
+                            CONFIDENCE</span>
+                    </div>
+                    <p class="text-body-md font-body-md text-on-surface-variant">No structural damage or cracks
+                        detected.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

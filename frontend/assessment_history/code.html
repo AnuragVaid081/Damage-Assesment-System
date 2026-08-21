@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Damage Assessment System - History</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Damage Assessment System - History</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet" />
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -101,240 +105,293 @@
             },
         }
     </script>
-<style>
+    <style>
         body {
             font-family: 'Geist', sans-serif;
-            background-color: #F9FAFB; /* Level 0 Background */
+            background-color: #F9FAFB;
+            /* Level 0 Background */
         }
+
         /* Custom Elevation Level 2 for active/floating */
         .shadow-level-2 {
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
         }
     </style>
 </head>
+
 <body class="bg-surface text-on-surface flex min-h-screen">
-<!-- Top Navigation for Mobile (md:hidden) -->
-<nav class="md:hidden flex justify-between items-center w-full px-margin-mobile h-16 bg-surface border-b border-outline-variant fixed top-0 left-0 z-50">
-<div class="text-title-lg font-title-lg font-bold text-on-surface">Damage-Assessment-System</div>
-<div class="flex items-center gap-4">
-<span class="material-symbols-outlined text-primary cursor-pointer">notifications</span>
-<span class="material-symbols-outlined text-primary cursor-pointer">account_circle</span>
-</div>
-</nav>
-<!-- SideNavBar (Hidden on mobile, visible on md+) -->
-<nav class="hidden md:flex fixed left-0 top-0 h-full flex-col p-stack-md z-40 docked h-screen left-0 w-64 bg-surface-container-low border-r border-outline-variant">
-<div class="mb-stack-lg">
-<div class="text-title-lg font-title-lg font-extrabold text-primary mb-2">Damage Assessment</div>
-<div class="flex items-center gap-3 mt-4">
-<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="A professional headshot of an insurance surveyor in a bright modern office setting. The lighting is soft and flattering, typical of high-end corporate photography. The surveyor looks confident and analytical. Clean white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOZD6lMha4Ur7LNc4Z79ek4pod6ETpk7Cg5jlKlhguchK1gwoe-quNr6f4y5m81i06VFPkYT8ZlBFgHJXWczw0NStx8kbs_T2J91oZKdScf3hAgIVw_2Vp-2U-JoQ8kn1rn7wze6CIzSW-_oFp2AWqm0qFpX3bQD-YXfIyGcVDFF2hIP9PsSTglJYOneCPN1kCtjnTAgBMLGC7Ue7El3JFe4er_A7ClyoLtKhTQUPg9XxPbg_16dqX"/>
-</div>
-<div>
-<div class="text-label-md font-label-md text-on-surface">Surveyor Profile</div>
-<div class="text-label-md font-label-md text-secondary">Insurance Professional</div>
-</div>
-</div>
-</div>
-<button class="w-full bg-primary-container text-on-primary text-label-md font-label-md py-2 px-4 rounded-lg mb-stack-lg flex items-center justify-center gap-2 hover:scale-[0.98] transition-transform duration-150">
-<span class="material-symbols-outlined" style="font-size: 18px;">add</span>
+    <!-- Top Navigation for Mobile (md:hidden) -->
+    <nav
+        class="md:hidden flex justify-between items-center w-full px-margin-mobile h-16 bg-surface border-b border-outline-variant fixed top-0 left-0 z-50">
+        <div class="text-title-lg font-title-lg font-bold text-on-surface">Damage-Assessment-System</div>
+        <div class="flex items-center gap-4">
+            <span class="material-symbols-outlined text-primary cursor-pointer">notifications</span>
+            <span class="material-symbols-outlined text-primary cursor-pointer">account_circle</span>
+        </div>
+    </nav>
+    <!-- SideNavBar (Hidden on mobile, visible on md+) -->
+    <nav
+        class="hidden md:flex fixed left-0 top-0 h-full flex-col p-stack-md z-40 docked h-screen left-0 w-64 bg-surface-container-low border-r border-outline-variant">
+        <div class="mb-stack-lg">
+            <div class="text-title-lg font-title-lg font-extrabold text-primary mb-2">Damage Assessment</div>
+            <div class="flex items-center gap-3 mt-4">
+                <div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center overflow-hidden">
+                    <img class="w-full h-full object-cover"
+                        data-alt="A professional headshot of an insurance surveyor in a bright modern office setting. The lighting is soft and flattering, typical of high-end corporate photography. The surveyor looks confident and analytical. Clean white background."
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOZD6lMha4Ur7LNc4Z79ek4pod6ETpk7Cg5jlKlhguchK1gwoe-quNr6f4y5m81i06VFPkYT8ZlBFgHJXWczw0NStx8kbs_T2J91oZKdScf3hAgIVw_2Vp-2U-JoQ8kn1rn7wze6CIzSW-_oFp2AWqm0qFpX3bQD-YXfIyGcVDFF2hIP9PsSTglJYOneCPN1kCtjnTAgBMLGC7Ue7El3JFe4er_A7ClyoLtKhTQUPg9XxPbg_16dqX" />
+                </div>
+                <div>
+                    <div class="text-label-md font-label-md text-on-surface">Surveyor Profile</div>
+                    <div class="text-label-md font-label-md text-secondary">Insurance Professional</div>
+                </div>
+            </div>
+        </div>
+        <button
+            class="w-full bg-primary-container text-on-primary text-label-md font-label-md py-2 px-4 rounded-lg mb-stack-lg flex items-center justify-center gap-2 hover:scale-[0.98] transition-transform duration-150">
+            <span class="material-symbols-outlined" style="font-size: 18px;">add</span>
             New Assessment
         </button>
-<ul class="flex flex-col gap-2">
-<li>
-<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high rounded-lg transition-colors duration-200" href="#">
-<span class="material-symbols-outlined">home</span>
-<span class="text-label-md font-label-md">Home</span>
-</a>
-</li>
-<li>
-<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high rounded-lg transition-colors duration-200" href="#">
-<span class="material-symbols-outlined">add_box</span>
-<span class="text-label-md font-label-md">New Assessment</span>
-</a>
-</li>
-<li>
-<a class="flex items-center gap-3 bg-primary-container text-on-primary-container rounded-lg px-4 py-3 font-bold scale-[0.99] transition-transform" href="#">
-<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">history</span>
-<span class="text-label-md font-label-md">History</span>
-</a>
-</li>
-<li>
-<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high rounded-lg transition-colors duration-200" href="#">
-<span class="material-symbols-outlined">settings</span>
-<span class="text-label-md font-label-md">Settings</span>
-</a>
-</li>
-</ul>
-</nav>
-<!-- BottomNavBar for Mobile (md:hidden) -->
-<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container-lowest border-t border-outline-variant flex justify-around items-center h-16 z-50">
-<a class="flex flex-col items-center gap-1 text-secondary p-2" href="#">
-<span class="material-symbols-outlined">home</span>
-<span class="text-[10px] font-label-md">Home</span>
-</a>
-<a class="flex flex-col items-center gap-1 text-secondary p-2" href="#">
-<span class="material-symbols-outlined">add_box</span>
-<span class="text-[10px] font-label-md">New</span>
-</a>
-<a class="flex flex-col items-center gap-1 text-primary border-t-2 border-primary pt-[6px]" href="#">
-<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">history</span>
-<span class="text-[10px] font-label-md font-bold">History</span>
-</a>
-<a class="flex flex-col items-center gap-1 text-secondary p-2" href="#">
-<span class="material-symbols-outlined">settings</span>
-<span class="text-[10px] font-label-md">Settings</span>
-</a>
-</nav>
-<!-- Main Content Area -->
-<main class="flex-1 md:ml-64 pt-16 md:pt-0 p-margin-mobile md:p-margin-desktop w-full max-w-[1280px] mx-auto pb-24 md:pb-margin-desktop">
-<header class="mb-stack-lg flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-<div>
-<h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-on-surface">Assessment History</h1>
-<p class="text-body-md font-body-md text-secondary mt-1">Review past vehicle damage reports and analyses.</p>
-</div>
-<div class="flex items-center gap-3 w-full md:w-auto">
-<div class="relative w-full md:w-64">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary" style="font-size: 20px;">search</span>
-<input class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg text-body-md font-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="Search vehicle or date..." type="text"/>
-</div>
-<button class="p-2 bg-surface-container-lowest border border-outline-variant rounded-lg text-on-surface hover:bg-surface-container-high transition-colors">
-<span class="material-symbols-outlined">filter_list</span>
-</button>
-</div>
-</header>
-<!-- Assessment List - Grid Layout -->
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
-<!-- Assessment Card 1 -->
-<article class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-col sm:flex-row gap-4 hover:shadow-level-2 transition-shadow duration-200 group relative">
-<!-- Status Chip (Absolute top right) -->
-<div class="absolute top-4 right-4 bg-primary-fixed text-on-primary-fixed-variant px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">
+        <ul class="flex flex-col gap-2">
+            <li>
+                <a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high rounded-lg transition-colors duration-200"
+                    href="#">
+                    <span class="material-symbols-outlined">home</span>
+                    <span class="text-label-md font-label-md">Home</span>
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high rounded-lg transition-colors duration-200"
+                    href="#">
+                    <span class="material-symbols-outlined">add_box</span>
+                    <span class="text-label-md font-label-md">New Assessment</span>
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 bg-primary-container text-on-primary-container rounded-lg px-4 py-3 font-bold scale-[0.99] transition-transform"
+                    href="#">
+                    <span class="material-symbols-outlined" data-weight="fill"
+                        style="font-variation-settings: 'FILL' 1;">history</span>
+                    <span class="text-label-md font-label-md">History</span>
+                </a>
+            </li>
+            <li>
+                <a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-high rounded-lg transition-colors duration-200"
+                    href="#">
+                    <span class="material-symbols-outlined">settings</span>
+                    <span class="text-label-md font-label-md">Settings</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!-- BottomNavBar for Mobile (md:hidden) -->
+    <nav
+        class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container-lowest border-t border-outline-variant flex justify-around items-center h-16 z-50">
+        <a class="flex flex-col items-center gap-1 text-secondary p-2" href="#">
+            <span class="material-symbols-outlined">home</span>
+            <span class="text-[10px] font-label-md">Home</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-secondary p-2" href="#">
+            <span class="material-symbols-outlined">add_box</span>
+            <span class="text-[10px] font-label-md">New</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-primary border-t-2 border-primary pt-[6px]" href="#">
+            <span class="material-symbols-outlined" data-weight="fill"
+                style="font-variation-settings: 'FILL' 1;">history</span>
+            <span class="text-[10px] font-label-md font-bold">History</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-secondary p-2" href="#">
+            <span class="material-symbols-outlined">settings</span>
+            <span class="text-[10px] font-label-md">Settings</span>
+        </a>
+    </nav>
+    <!-- Main Content Area -->
+    <main
+        class="flex-1 md:ml-64 pt-16 md:pt-0 p-margin-mobile md:p-margin-desktop w-full max-w-[1280px] mx-auto pb-24 md:pb-margin-desktop">
+        <header class="mb-stack-lg flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div>
+                <h1
+                    class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-on-surface">
+                    Assessment History</h1>
+                <p class="text-body-md font-body-md text-secondary mt-1">Review past vehicle damage reports and
+                    analyses.</p>
+            </div>
+            <div class="flex items-center gap-3 w-full md:w-auto">
+                <div class="relative w-full md:w-64">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary"
+                        style="font-size: 20px;">search</span>
+                    <input
+                        class="w-full pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-lg text-body-md font-body-md focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                        placeholder="Search vehicle or date..." type="text" />
+                </div>
+                <button
+                    class="p-2 bg-surface-container-lowest border border-outline-variant rounded-lg text-on-surface hover:bg-surface-container-high transition-colors">
+                    <span class="material-symbols-outlined">filter_list</span>
+                </button>
+            </div>
+        </header>
+        <!-- Assessment List - Grid Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
+            <!-- Assessment Card 1 -->
+            <article
+                class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-col sm:flex-row gap-4 hover:shadow-level-2 transition-shadow duration-200 group relative">
+                <!-- Status Chip (Absolute top right) -->
+                <div
+                    class="absolute top-4 right-4 bg-primary-fixed text-on-primary-fixed-variant px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">
                     Completed
                 </div>
-<div class="w-full sm:w-32 h-32 rounded-lg overflow-hidden shrink-0 bg-surface-variant">
-<img class="w-full h-full object-cover" data-alt="A high-resolution photo of a 2022 BMW 3 Series with minor front bumper damage. The car is silver, parked in a well-lit inspection bay. The lighting is bright and clinical, highlighting the scratch on the bumper. Modern corporate photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJYMLpikVqSNJtUblyqzliOW125XHLond3tqvBQ16uvyDs_jNiVZGEPHe1bYwwGTZAzp0PyRLqWJWQcmq4JGUmi7O5EgdDuaDC_DaNTkqwt9gYlMdAJA3ZAwJrbFiVIZiVgfzueZ3r5ZQDU96DtjqxFYwCLcWZHlDwC8SRJYliZM46wXtNveukX-sQxo65vLjLk1i1WpVJWYl8vxtozVwiJ4n3-LtS0iyEfsLqh3Ll4pA7DPiI15lc"/>
-</div>
-<div class="flex flex-col justify-between flex-1 py-1">
-<div>
-<div class="flex items-center gap-2 mb-1">
-<span class="material-symbols-outlined text-secondary" style="font-size: 16px;">calendar_today</span>
-<span class="text-label-md font-label-md text-secondary">Oct 24, 2023</span>
-</div>
-<h3 class="text-title-lg font-title-lg text-on-surface">2022 BMW 3 Series</h3>
-<p class="text-body-md font-body-md text-on-surface-variant mt-1">VIN: WBA5R1C51N12XXXXX</p>
-</div>
-<div class="flex items-center justify-between mt-4 border-t border-outline-variant pt-3">
-<div class="flex items-center gap-2">
-<div class="w-6 h-6 rounded-full bg-error-container text-on-error-container flex items-center justify-center text-[10px] font-bold">
+                <div class="w-full sm:w-32 h-32 rounded-lg overflow-hidden shrink-0 bg-surface-variant">
+                    <img class="w-full h-full object-cover"
+                        data-alt="A high-resolution photo of a 2022 BMW 3 Series with minor front bumper damage. The car is silver, parked in a well-lit inspection bay. The lighting is bright and clinical, highlighting the scratch on the bumper. Modern corporate photography style."
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJYMLpikVqSNJtUblyqzliOW125XHLond3tqvBQ16uvyDs_jNiVZGEPHe1bYwwGTZAzp0PyRLqWJWQcmq4JGUmi7O5EgdDuaDC_DaNTkqwt9gYlMdAJA3ZAwJrbFiVIZiVgfzueZ3r5ZQDU96DtjqxFYwCLcWZHlDwC8SRJYliZM46wXtNveukX-sQxo65vLjLk1i1WpVJWYl8vxtozVwiJ4n3-LtS0iyEfsLqh3Ll4pA7DPiI15lc" />
+                </div>
+                <div class="flex flex-col justify-between flex-1 py-1">
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="material-symbols-outlined text-secondary"
+                                style="font-size: 16px;">calendar_today</span>
+                            <span class="text-label-md font-label-md text-secondary">Oct 24, 2023</span>
+                        </div>
+                        <h3 class="text-title-lg font-title-lg text-on-surface">2022 BMW 3 Series</h3>
+                        <p class="text-body-md font-body-md text-on-surface-variant mt-1">VIN: WBA5R1C51N12XXXXX</p>
+                    </div>
+                    <div class="flex items-center justify-between mt-4 border-t border-outline-variant pt-3">
+                        <div class="flex items-center gap-2">
+                            <div
+                                class="w-6 h-6 rounded-full bg-error-container text-on-error-container flex items-center justify-center text-[10px] font-bold">
                                 3
                             </div>
-<span class="text-label-md font-label-md text-secondary">Damages Detected</span>
-</div>
-<button class="bg-surface-container-lowest border border-outline-variant text-on-surface text-label-md font-label-md py-1.5 px-3 rounded-lg hover:bg-surface-container-high transition-colors group-hover:border-primary group-hover:text-primary">
+                            <span class="text-label-md font-label-md text-secondary">Damages Detected</span>
+                        </div>
+                        <button
+                            class="bg-surface-container-lowest border border-outline-variant text-on-surface text-label-md font-label-md py-1.5 px-3 rounded-lg hover:bg-surface-container-high transition-colors group-hover:border-primary group-hover:text-primary">
                             View Report
                         </button>
-</div>
-</div>
-</article>
-<!-- Assessment Card 2 -->
-<article class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-col sm:flex-row gap-4 hover:shadow-level-2 transition-shadow duration-200 group relative">
-<div class="absolute top-4 right-4 bg-tertiary-fixed text-on-tertiary-fixed-variant px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">
+                    </div>
+                </div>
+            </article>
+            <!-- Assessment Card 2 -->
+            <article
+                class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-col sm:flex-row gap-4 hover:shadow-level-2 transition-shadow duration-200 group relative">
+                <div
+                    class="absolute top-4 right-4 bg-tertiary-fixed text-on-tertiary-fixed-variant px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">
                     Review Required
                 </div>
-<div class="w-full sm:w-32 h-32 rounded-lg overflow-hidden shrink-0 bg-surface-variant">
-<img class="w-full h-full object-cover" data-alt="A high-resolution close up photo of a red 2020 Honda Civic side door with a significant dent. The lighting is angled to emphasize the depth of the dent against the glossy red paint. Professional inspection setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEPSFiWnkg8DH0sq3dEDkV3TppFClvJCSwEXDgIrheAa-Ln98lzdwReBrkHZydebgaCMpxncP6HegJ_UGEkV8YYFiqykPiVuwcQ2ZTtO2pdAcD6ZdBaDiqMpPDJ2iBVrouPU2gPc9RH57qf9Fe1LDAX9LrhSHUVOggnCI2GfLD12H4dhpnhZzze4vZXdAhp0WX5AHq1FwFlxvDpOlZH3YrqxAoKU1gjij2jqM5se3Nx3-6lhDpL2E1"/>
-</div>
-<div class="flex flex-col justify-between flex-1 py-1">
-<div>
-<div class="flex items-center gap-2 mb-1">
-<span class="material-symbols-outlined text-secondary" style="font-size: 16px;">calendar_today</span>
-<span class="text-label-md font-label-md text-secondary">Oct 22, 2023</span>
-</div>
-<h3 class="text-title-lg font-title-lg text-on-surface">2020 Honda Civic</h3>
-<p class="text-body-md font-body-md text-on-surface-variant mt-1">VIN: 2HGFC2F57LHXXXXX</p>
-</div>
-<div class="flex items-center justify-between mt-4 border-t border-outline-variant pt-3">
-<div class="flex items-center gap-2">
-<div class="w-6 h-6 rounded-full bg-error-container text-on-error-container flex items-center justify-center text-[10px] font-bold">
+                <div class="w-full sm:w-32 h-32 rounded-lg overflow-hidden shrink-0 bg-surface-variant">
+                    <img class="w-full h-full object-cover"
+                        data-alt="A high-resolution close up photo of a red 2020 Honda Civic side door with a significant dent. The lighting is angled to emphasize the depth of the dent against the glossy red paint. Professional inspection setting."
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEPSFiWnkg8DH0sq3dEDkV3TppFClvJCSwEXDgIrheAa-Ln98lzdwReBrkHZydebgaCMpxncP6HegJ_UGEkV8YYFiqykPiVuwcQ2ZTtO2pdAcD6ZdBaDiqMpPDJ2iBVrouPU2gPc9RH57qf9Fe1LDAX9LrhSHUVOggnCI2GfLD12H4dhpnhZzze4vZXdAhp0WX5AHq1FwFlxvDpOlZH3YrqxAoKU1gjij2jqM5se3Nx3-6lhDpL2E1" />
+                </div>
+                <div class="flex flex-col justify-between flex-1 py-1">
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="material-symbols-outlined text-secondary"
+                                style="font-size: 16px;">calendar_today</span>
+                            <span class="text-label-md font-label-md text-secondary">Oct 22, 2023</span>
+                        </div>
+                        <h3 class="text-title-lg font-title-lg text-on-surface">2020 Honda Civic</h3>
+                        <p class="text-body-md font-body-md text-on-surface-variant mt-1">VIN: 2HGFC2F57LHXXXXX</p>
+                    </div>
+                    <div class="flex items-center justify-between mt-4 border-t border-outline-variant pt-3">
+                        <div class="flex items-center gap-2">
+                            <div
+                                class="w-6 h-6 rounded-full bg-error-container text-on-error-container flex items-center justify-center text-[10px] font-bold">
                                 1
                             </div>
-<span class="text-label-md font-label-md text-secondary">Damage Detected</span>
-</div>
-<button class="bg-surface-container-lowest border border-outline-variant text-on-surface text-label-md font-label-md py-1.5 px-3 rounded-lg hover:bg-surface-container-high transition-colors group-hover:border-primary group-hover:text-primary">
+                            <span class="text-label-md font-label-md text-secondary">Damage Detected</span>
+                        </div>
+                        <button
+                            class="bg-surface-container-lowest border border-outline-variant text-on-surface text-label-md font-label-md py-1.5 px-3 rounded-lg hover:bg-surface-container-high transition-colors group-hover:border-primary group-hover:text-primary">
                             View Report
                         </button>
-</div>
-</div>
-</article>
-<!-- Assessment Card 3 -->
-<article class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-col sm:flex-row gap-4 hover:shadow-level-2 transition-shadow duration-200 group relative">
-<div class="absolute top-4 right-4 bg-primary-fixed text-on-primary-fixed-variant px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">
+                    </div>
+                </div>
+            </article>
+            <!-- Assessment Card 3 -->
+            <article
+                class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-col sm:flex-row gap-4 hover:shadow-level-2 transition-shadow duration-200 group relative">
+                <div
+                    class="absolute top-4 right-4 bg-primary-fixed text-on-primary-fixed-variant px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">
                     Completed
                 </div>
-<div class="w-full sm:w-32 h-32 rounded-lg overflow-hidden shrink-0 bg-surface-variant flex items-center justify-center">
-<span class="material-symbols-outlined text-secondary-fixed-dim" style="font-size: 48px;">directions_car</span>
-</div>
-<div class="flex flex-col justify-between flex-1 py-1">
-<div>
-<div class="flex items-center gap-2 mb-1">
-<span class="material-symbols-outlined text-secondary" style="font-size: 16px;">calendar_today</span>
-<span class="text-label-md font-label-md text-secondary">Oct 20, 2023</span>
-</div>
-<h3 class="text-title-lg font-title-lg text-on-surface">2019 Ford F-150</h3>
-<p class="text-body-md font-body-md text-on-surface-variant mt-1">VIN: 1FTEW1EP0KKXXXXX</p>
-</div>
-<div class="flex items-center justify-between mt-4 border-t border-outline-variant pt-3">
-<div class="flex items-center gap-2">
-<div class="w-6 h-6 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center text-[10px] font-bold">
+                <div
+                    class="w-full sm:w-32 h-32 rounded-lg overflow-hidden shrink-0 bg-surface-variant flex items-center justify-center">
+                    <span class="material-symbols-outlined text-secondary-fixed-dim"
+                        style="font-size: 48px;">directions_car</span>
+                </div>
+                <div class="flex flex-col justify-between flex-1 py-1">
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="material-symbols-outlined text-secondary"
+                                style="font-size: 16px;">calendar_today</span>
+                            <span class="text-label-md font-label-md text-secondary">Oct 20, 2023</span>
+                        </div>
+                        <h3 class="text-title-lg font-title-lg text-on-surface">2019 Ford F-150</h3>
+                        <p class="text-body-md font-body-md text-on-surface-variant mt-1">VIN: 1FTEW1EP0KKXXXXX</p>
+                    </div>
+                    <div class="flex items-center justify-between mt-4 border-t border-outline-variant pt-3">
+                        <div class="flex items-center gap-2">
+                            <div
+                                class="w-6 h-6 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center text-[10px] font-bold">
                                 0
                             </div>
-<span class="text-label-md font-label-md text-secondary">Damages Detected</span>
-</div>
-<button class="bg-surface-container-lowest border border-outline-variant text-on-surface text-label-md font-label-md py-1.5 px-3 rounded-lg hover:bg-surface-container-high transition-colors group-hover:border-primary group-hover:text-primary">
+                            <span class="text-label-md font-label-md text-secondary">Damages Detected</span>
+                        </div>
+                        <button
+                            class="bg-surface-container-lowest border border-outline-variant text-on-surface text-label-md font-label-md py-1.5 px-3 rounded-lg hover:bg-surface-container-high transition-colors group-hover:border-primary group-hover:text-primary">
                             View Report
                         </button>
-</div>
-</div>
-</article>
-<!-- Assessment Card 4 -->
-<article class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-col sm:flex-row gap-4 hover:shadow-level-2 transition-shadow duration-200 group relative">
-<div class="absolute top-4 right-4 bg-primary-fixed text-on-primary-fixed-variant px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">
+                    </div>
+                </div>
+            </article>
+            <!-- Assessment Card 4 -->
+            <article
+                class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4 flex flex-col sm:flex-row gap-4 hover:shadow-level-2 transition-shadow duration-200 group relative">
+                <div
+                    class="absolute top-4 right-4 bg-primary-fixed text-on-primary-fixed-variant px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">
                     Completed
                 </div>
-<div class="w-full sm:w-32 h-32 rounded-lg overflow-hidden shrink-0 bg-surface-variant">
-<img class="w-full h-full object-cover" data-alt="A high-resolution photo of a white 2021 Toyota Camry showing rear bumper scuffs. The car is indoors under bright, analytical fluorescent lighting. The scuff marks are clearly visible. Professional inspection setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzzyYIeUYuMxxC64JIfzQ05deqctrWSX7weR9sWcVi5XRLVFzPjq6uNBJuZ3iuZKkpAn6-YsvGMTy-KR3IIPf2qDSwtr4atT4BbAn4E7cNjGZFV0LMP7xIRgEpZclPG_v1wzX2oyut5xl2lZYamI5qd3Bt0nLrXH5Qa7NXzlFaN2Vd4NBts2OUmbdVRrmrVoLFU3SymjgFTtjueUQ4QU1gWMKT9rJ4EZZcdthSz5M4JoI5ODl50tjj"/>
-</div>
-<div class="flex flex-col justify-between flex-1 py-1">
-<div>
-<div class="flex items-center gap-2 mb-1">
-<span class="material-symbols-outlined text-secondary" style="font-size: 16px;">calendar_today</span>
-<span class="text-label-md font-label-md text-secondary">Oct 18, 2023</span>
-</div>
-<h3 class="text-title-lg font-title-lg text-on-surface">2021 Toyota Camry</h3>
-<p class="text-body-md font-body-md text-on-surface-variant mt-1">VIN: 4T1B11HK5MUXXXXX</p>
-</div>
-<div class="flex items-center justify-between mt-4 border-t border-outline-variant pt-3">
-<div class="flex items-center gap-2">
-<div class="w-6 h-6 rounded-full bg-error-container text-on-error-container flex items-center justify-center text-[10px] font-bold">
+                <div class="w-full sm:w-32 h-32 rounded-lg overflow-hidden shrink-0 bg-surface-variant">
+                    <img class="w-full h-full object-cover"
+                        data-alt="A high-resolution photo of a white 2021 Toyota Camry showing rear bumper scuffs. The car is indoors under bright, analytical fluorescent lighting. The scuff marks are clearly visible. Professional inspection setting."
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzzyYIeUYuMxxC64JIfzQ05deqctrWSX7weR9sWcVi5XRLVFzPjq6uNBJuZ3iuZKkpAn6-YsvGMTy-KR3IIPf2qDSwtr4atT4BbAn4E7cNjGZFV0LMP7xIRgEpZclPG_v1wzX2oyut5xl2lZYamI5qd3Bt0nLrXH5Qa7NXzlFaN2Vd4NBts2OUmbdVRrmrVoLFU3SymjgFTtjueUQ4QU1gWMKT9rJ4EZZcdthSz5M4JoI5ODl50tjj" />
+                </div>
+                <div class="flex flex-col justify-between flex-1 py-1">
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="material-symbols-outlined text-secondary"
+                                style="font-size: 16px;">calendar_today</span>
+                            <span class="text-label-md font-label-md text-secondary">Oct 18, 2023</span>
+                        </div>
+                        <h3 class="text-title-lg font-title-lg text-on-surface">2021 Toyota Camry</h3>
+                        <p class="text-body-md font-body-md text-on-surface-variant mt-1">VIN: 4T1B11HK5MUXXXXX</p>
+                    </div>
+                    <div class="flex items-center justify-between mt-4 border-t border-outline-variant pt-3">
+                        <div class="flex items-center gap-2">
+                            <div
+                                class="w-6 h-6 rounded-full bg-error-container text-on-error-container flex items-center justify-center text-[10px] font-bold">
                                 2
                             </div>
-<span class="text-label-md font-label-md text-secondary">Damages Detected</span>
-</div>
-<button class="bg-surface-container-lowest border border-outline-variant text-on-surface text-label-md font-label-md py-1.5 px-3 rounded-lg hover:bg-surface-container-high transition-colors group-hover:border-primary group-hover:text-primary">
+                            <span class="text-label-md font-label-md text-secondary">Damages Detected</span>
+                        </div>
+                        <button
+                            class="bg-surface-container-lowest border border-outline-variant text-on-surface text-label-md font-label-md py-1.5 px-3 rounded-lg hover:bg-surface-container-high transition-colors group-hover:border-primary group-hover:text-primary">
                             View Report
                         </button>
-</div>
-</div>
-</article>
-</div>
-<!-- Pagination (Simplified) -->
-<div class="mt-stack-lg flex justify-center items-center gap-4">
-<button class="p-2 text-secondary hover:text-primary disabled:opacity-50" disabled="">
-<span class="material-symbols-outlined">chevron_left</span>
-</button>
-<span class="text-label-md font-label-md text-on-surface">Page 1 of 12</span>
-<button class="p-2 text-secondary hover:text-primary">
-<span class="material-symbols-outlined">chevron_right</span>
-</button>
-</div>
-</main>
-</body></html>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <!-- Pagination (Simplified) -->
+        <div class="mt-stack-lg flex justify-center items-center gap-4">
+            <button class="p-2 text-secondary hover:text-primary disabled:opacity-50" disabled="">
+                <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <span class="text-label-md font-label-md text-on-surface">Page 1 of 12</span>
+            <button class="p-2 text-secondary hover:text-primary">
+                <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -25,26 +25,67 @@
     <!-- Image Inspector Panel (Spans 8 cols on lg) -->
     <div class="lg:col-span-8 flex flex-col gap-gutter">
         <div class="bg-surface rounded-xl border border-outline-variant p-4 relative overflow-hidden group">
-            <!-- Image Container -->
-            <div class="relative w-full aspect-video rounded-lg overflow-hidden bg-surface-container-highest">
-                <img class="object-cover w-full h-full"
-                     src="{{ assessment.main_image }}"
-                     alt="Vehicle damage assessment image"/>
-                {% for anomaly in assessment.anomalies %}
-                {% if anomaly.bbox %}
-                <!-- Bounding Box {{ loop.index }} -->
-                <div class="absolute border-2 rounded-sm hover:bg-opacity-20 transition-colors cursor-pointer"
-                     style="border-color: {{ anomaly.color }};
-                            background-color: {{ anomaly.color }}15;
-                            top: {{ anomaly.bbox.top }};
-                            left: {{ anomaly.bbox.left }};
-                            width: {{ anomaly.bbox.width }};
-                            height: {{ anomaly.bbox.height }};">
-                    <div class="absolute -top-3 -right-3 w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg"
-                         style="background-color: {{ anomaly.color }};">{{ loop.index }}</div>
-                </div>
+            <!-- Carousel Container -->
+            <div class="relative w-full aspect-video rounded-lg overflow-hidden bg-surface-container-highest" id="image-carousel">
+                {% if assessment.carousel_images %}
+                    {% for img in assessment.carousel_images %}
+                    <div class="carousel-item absolute inset-0 w-full h-full transition-opacity duration-300 {% if loop.index0 != 0 %}opacity-0 pointer-events-none{% endif %}" data-index="{{ loop.index0 }}">
+                        <img class="object-cover w-full h-full"
+                             src="{{ img.image_path }}"
+                             alt="Vehicle damage assessment image - {{ img.image_filename }}"/>
+                        
+                        {% for bbox in img.bboxes %}
+                        <!-- Bounding Box -->
+                        <div class="absolute border-2 rounded-sm hover:bg-opacity-20 transition-colors cursor-pointer"
+                             style="border-color: {{ bbox.color }};
+                                    background-color: {{ bbox.color }}15;
+                                    top: {{ bbox.top }};
+                                    left: {{ bbox.left }};
+                                    width: {{ bbox.width }};
+                                    height: {{ bbox.height }};">
+                            <div class="absolute -top-3 -right-3 w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg"
+                                 style="background-color: {{ bbox.color }};">{{ bbox.anomaly_index }}</div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+
+                    <!-- Carousel Controls -->
+                    {% if assessment.carousel_images|length > 1 %}
+                    <button id="carousel-prev" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/75 transition-colors z-10">
+                        <span class="material-symbols-outlined">chevron_left</span>
+                    </button>
+                    <button id="carousel-next" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/75 transition-colors z-10">
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </button>
+                    <!-- Indicators -->
+                    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                        {% for img in assessment.carousel_images %}
+                        <div class="carousel-indicator w-2 h-2 rounded-full bg-white/50 transition-colors {% if loop.index0 == 0 %}bg-white{% endif %}"></div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                {% else %}
+                    <!-- Fallback for older assessments without carousel_images -->
+                    <img class="object-cover w-full h-full"
+                         src="{{ assessment.main_image }}"
+                         alt="Vehicle damage assessment image"/>
+                    {% for anomaly in assessment.anomalies %}
+                    {% if anomaly.bbox %}
+                    <!-- Bounding Box {{ loop.index }} -->
+                    <div class="absolute border-2 rounded-sm hover:bg-opacity-20 transition-colors cursor-pointer"
+                         style="border-color: {{ anomaly.color }};
+                                background-color: {{ anomaly.color }}15;
+                                top: {{ anomaly.bbox.top }};
+                                left: {{ anomaly.bbox.left }};
+                                width: {{ anomaly.bbox.width }};
+                                height: {{ anomaly.bbox.height }};">
+                        <div class="absolute -top-3 -right-3 w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-lg"
+                             style="background-color: {{ anomaly.color }};">{{ loop.index }}</div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
                 {% endif %}
-                {% endfor %}
             </div>
         </div>
 
@@ -108,4 +149,45 @@
         {% endfor %}
     </div>
 </div>
+</div>
+
+<!-- Carousel Logic -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const items = document.querySelectorAll('.carousel-item');
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        const prevBtn = document.getElementById('carousel-prev');
+        const nextBtn = document.getElementById('carousel-next');
+        
+        if (!items.length || !prevBtn || !nextBtn) return;
+        
+        let currentIndex = 0;
+        
+        function showSlide(index) {
+            // Hide all
+            items.forEach(item => {
+                item.classList.add('opacity-0', 'pointer-events-none');
+            });
+            indicators.forEach(ind => {
+                ind.classList.remove('bg-white');
+                ind.classList.add('bg-white/50');
+            });
+            
+            // Show target
+            items[index].classList.remove('opacity-0', 'pointer-events-none');
+            indicators[index].classList.remove('bg-white/50');
+            indicators[index].classList.add('bg-white');
+        }
+        
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + items.length) % items.length;
+            showSlide(currentIndex);
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % items.length;
+            showSlide(currentIndex);
+        });
+    });
+</script>
 {% endblock %}

@@ -10,10 +10,9 @@ import cv2
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
-DATASET_DIR = PROJECT_ROOT/"data"/"kaggle"/"vehide"
-IMAGE_DIR = DATASET_DIR/"image"/"image"
+DATASET_DIR = PROJECT_ROOT / "data" / "kaggle" / "vehide"
 
-OUTPUT_DIR = PROJECT_ROOT/"ai"/"data"
+OUTPUT_DIR = PROJECT_ROOT / "ai" / "data" / "vehide_yolo"
 
 # -----------------------------
 # Class mapping
@@ -78,6 +77,11 @@ def convert_polygon(region, image_width, image_height):
 
 def process_split(split_name, annotation_file):
 
+    if split_name == "train":
+        image_dir = DATASET_DIR / "image" / "image"
+    else:
+        image_dir = DATASET_DIR / "validation" / "validation"
+
     print(f"\nProcessing {split_name} split...")
 
     # Output Directories
@@ -99,7 +103,7 @@ def process_split(split_name, annotation_file):
 
         image_name = entry["name"]
 
-        source_image = IMAGE_DIR / image_name
+        source_image = image_dir / image_name
 
         if not source_image.exists():
             # print(f"Missing image: {image_name}")
@@ -126,7 +130,7 @@ def process_split(split_name, annotation_file):
                     height
                 )
 
-                line = "".join(
+                line = " ".join(
                     [str(class_id)] + 
                     [f"{value:.6f}" for value in coordinates]
                 )

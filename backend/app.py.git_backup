@@ -1,41 +1,22 @@
-"""
-Damage Assessment System — Flask Backend
+﻿"""
+Damage Assessment System ΓÇö Flask Backend
 =========================================
 Serves the frontend templates with proper inter-page navigation,
 sample assessment data, form handling, and file uploads.
 
 Routes:
-    /                       → Home page
-    /new-assessment         → New assessment form
-    /new-assessment (POST)  → Submit assessment (redirects to results)
-    /history                → Assessment history list
-    /results/<id>           → Single assessment results
-    /settings               → System settings page
-    /settings (POST)        → Save settings (redirects back)
+    /                       ΓåÆ Home page
+    /new-assessment         ΓåÆ New assessment form
+    /new-assessment (POST)  ΓåÆ Submit assessment (redirects to results)
+    /history                ΓåÆ Assessment history list
+    /results/<id>           ΓåÆ Single assessment results
+    /settings               ΓåÆ System settings page
+    /settings (POST)        ΓåÆ Save settings (redirects back)
 """
 
-import logging
 import os
-import sys
 import uuid
 from datetime import datetime
-from pathlib import Path
-
-# ---------------------------------------------------------------------------
-# Load environment variables from .env BEFORE importing service modules,
-# so GEMINI_API_KEY and YOLO_MODEL_PATH are available at import time.
-# ---------------------------------------------------------------------------
-from dotenv import load_dotenv
-
-load_dotenv()
-
-# ---------------------------------------------------------------------------
-# Ensure backend/ is on sys.path so `services.*` imports work whether Flask
-# is started from the project root or from inside backend/.
-# ---------------------------------------------------------------------------
-_BACKEND_DIR = Path(__file__).resolve().parent
-if str(_BACKEND_DIR) not in sys.path:
-    sys.path.insert(0, str(_BACKEND_DIR))
 
 from flask import (
     Flask,
@@ -45,32 +26,6 @@ from flask import (
     url_for,
     flash,
 )
-
-# ---------------------------------------------------------------------------
-# Logging
-# ---------------------------------------------------------------------------
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(name)s — %(message)s",
-)
-logger = logging.getLogger(__name__)
-
-# ---------------------------------------------------------------------------
-# AI Pipeline services — imported at startup with graceful fallback so the
-# app still runs (serving existing history / settings) even if deps are missing.
-# ---------------------------------------------------------------------------
-try:
-    from services.assessment_service import run_assessment as _run_assessment
-
-    _AI_PIPELINE_AVAILABLE = True
-    logger.info("AI pipeline services loaded successfully.")
-except Exception as _svc_exc:
-    _AI_PIPELINE_AVAILABLE = False
-    logger.warning(
-        "AI pipeline services could not be loaded: %s — "
-        "new assessments will return a degraded result.",
-        _svc_exc,
-    )
 
 # ---------------------------------------------------------------------------
 # App Configuration
@@ -100,7 +55,7 @@ app_settings = {
     "dark_mode": False,
 }
 
-# Sample assessment records — unchanged, always present in history
+# Sample assessment records
 SAMPLE_ASSESSMENTS = [
     {
         "id": "DA-2023-8941",
@@ -173,7 +128,7 @@ SAMPLE_ASSESSMENTS = [
         "ai_summary": (
             "Analysis detects a significant dent on the driver-side door panel "
             "consistent with a side-impact collision. Paint deformation and creasing "
-            "visible across a 30cm span. Door alignment may be compromised — "
+            "visible across a 30cm span. Door alignment may be compromised ΓÇö "
             "recommend physical hinge inspection. No window damage detected."
         ),
         "anomalies": [
@@ -223,7 +178,7 @@ SAMPLE_ASSESSMENTS = [
         "main_image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCzzyYIeUYuMxxC64JIfzQ05deqctrWSX7weR9sWcVi5XRLVFzPjq6uNBJuZ3iuZKkpAn6-YsvGMTy-KR3IIPf2qDSwtr4atT4BbAn4E7cNjGZFV0LMP7xIRgEpZclPG_v1wzX2oyut5xl2lZYamI5qd3Bt0nLrXH5Qa7NXzlFaN2Vd4NBts2OUmbdVRrmrVoLFU3SymjgFTtjueUQ4QU1gWMKT9rJ4EZZcdthSz5M4JoI5ODl50tjj",
         "ai_summary": (
             "Rear bumper shows surface-level scuff marks and minor paint abrasion. "
-            "Impact force appears low — likely from a parking lot incident. Bumper "
+            "Impact force appears low ΓÇö likely from a parking lot incident. Bumper "
             "structural integrity is intact. Cosmetic repair recommended. Secondary "
             "scratching detected on the trunk lid near the badge."
         ),
@@ -284,101 +239,31 @@ def new_assessment():
 def submit_assessment():
     """
     Handle new assessment form submission.
-
-    Flow:
-    1. Collect vehicle metadata from form.
-    2. Generate a unique assessment ID.
-    3. Save ALL uploaded images in a single pass (preserving stream).
-    4. Pass all saved image paths to the AI assessment pipeline.
-    5. Store the completed assessment record in SAMPLE_ASSESSMENTS.
-    6. Redirect to /results/<id>.
+    Saves uploaded images (if any), creates a new assessment record,
+    and redirects to the results page.
     """
-    # -- 1. Form metadata --
+    # Collect form data
     make = request.form.get("make", "Unknown")
     model = request.form.get("model", "Unknown")
     year = request.form.get("year", "N/A")
     vin = request.form.get("vin", "N/A")
 
-    # -- 2. Assessment ID --
+    # Generate a new assessment ID
     new_id = f"DA-{datetime.now().strftime('%Y')}-{uuid.uuid4().hex[:4].upper()}"
 
-    # -- 3. Save ALL uploaded images in ONE pass --
-    # Flask's file stream can only be iterated once; collect paths here.
+    # Handle file uploads
     uploaded_files = request.files.getlist("images")
-    saved_image_url: str | None = None   # URL of first image (history thumbnail)
-    all_saved_paths: list[str] = []      # absolute paths for AI pipeline
-
+    saved_image_url = None
     for f in uploaded_files:
         if f and f.filename:
             safe_name = f"{new_id}_{f.filename}"
             save_path = os.path.join(app.config["UPLOAD_FOLDER"], safe_name)
-            try:
-                f.save(save_path)
-                all_saved_paths.append(save_path)
-                if saved_image_url is None:
-                    saved_image_url = f"/static/uploads/{safe_name}"
-            except Exception as upload_exc:
-                logger.warning(
-                    "Could not save uploaded file %s: %s", f.filename, upload_exc
-                )
+            f.save(save_path)
+            if saved_image_url is None:
+                saved_image_url = f"/static/uploads/{safe_name}"
 
-    # -- 4. AI Assessment Pipeline --
-    vehicle_meta = {
-        "make": make,
-        "model": model,
-        "year": year,
-        "vin": vin if vin else "N/A",
-    }
-
-    ai_result: dict = {}
-    if _AI_PIPELINE_AVAILABLE and all_saved_paths:
-        try:
-            logger.info(
-                "Running AI assessment for %s with %d image(s).",
-                new_id,
-                len(all_saved_paths),
-            )
-            ai_result = _run_assessment(
-                image_paths=all_saved_paths,
-                vehicle_meta=vehicle_meta,
-            )
-        except Exception as ai_exc:
-            logger.error(
-                "AI assessment pipeline raised an unexpected error for %s: %s",
-                new_id,
-                ai_exc,
-                exc_info=True,
-            )
-            ai_result = {}
-
-    # -- 5. Resolve primary display image and carousel --
-    primary_image = ai_result.get("primary_image_path") or saved_image_url
-    if primary_image and os.path.isabs(primary_image):
-        # Convert absolute path -> Flask-servable URL
-        primary_image = "/static/uploads/" + os.path.basename(primary_image)
-
-    # Convert carousel image absolute paths -> Flask-servable URLs
-    carousel_images = ai_result.get("carousel_images", [])
-    for ci in carousel_images:
-        if "image_path" in ci and os.path.isabs(ci["image_path"]):
-            ci["image_path"] = "/static/uploads/" + os.path.basename(ci["image_path"])
-
-    anomalies = ai_result.get("anomalies", [])
-    ai_summary = ai_result.get(
-        "summary",
-        (
-            f"AI analysis of the {year} {make} {model} has been queued. "
-            "No images were provided or the AI service was unavailable. "
-            "Please resubmit with vehicle images for a full assessment."
-        ),
-    )
-    status = ai_result.get("status", "Review Required")
-    damage_count = len(
-        [a for a in anomalies if a.get("severity") not in ("None", None)]
-    )
-
-    # -- 6. Build assessment record matching existing frontend schema --
-    new_assessment_record: dict = {
+    # Create a new assessment record (simulating AI analysis)
+    new_assessment_record = {
         "id": new_id,
         "vehicle": f"{year} {make} {model}",
         "vin": vin if vin else "N/A",
@@ -386,22 +271,44 @@ def submit_assessment():
         "model": model,
         "year": year,
         "date": datetime.now().strftime("%b %d, %Y"),
-        "status": status,
-        "damage_count": damage_count,
-        "image_url": saved_image_url,       # first-image thumbnail for history list
-        "main_image": primary_image,        # primary display image for results page
-        "ai_summary": ai_summary,
-        "anomalies": anomalies,
-        # Extended fields for future multi-image results UI
-        # (not consumed by current templates; safe to add)
-        "all_images": ai_result.get("all_images", []),
-        "recommendations": ai_result.get("recommendations", []),
-        "overall_severity": ai_result.get("overall_severity", "Low"),
-        "carousel_images": carousel_images,
-        "_fallback": ai_result.get("_fallback", not _AI_PIPELINE_AVAILABLE),
+        "status": "Completed",
+        "damage_count": 2,
+        "image_url": saved_image_url,
+        "main_image": saved_image_url,
+        "ai_summary": (
+            f"AI analysis of the {year} {make} {model} is complete. "
+            "The system has detected potential damage areas that require "
+            "further review. Please inspect the highlighted regions for "
+            "structural and cosmetic anomalies. Overall assessment confidence "
+            "is 87%."
+        ),
+        "anomalies": [
+            {
+                "part": "Front Bumper",
+                "confidence": 87,
+                "damage_type": "Dent / Deformation",
+                "severity": "Medium",
+                "severity_bg": "#ffede6",
+                "severity_color": "#bc4800",
+                "action": "Repair",
+                "color": "#bc4800",
+                "bbox": {"top": "40%", "left": "20%", "width": "30%", "height": "30%"},
+            },
+            {
+                "part": "Hood Panel",
+                "confidence": 72,
+                "damage_type": "Scratch / Paint Loss",
+                "severity": "Low",
+                "severity_bg": "#dbe1ff",
+                "severity_color": "#003ea8",
+                "action": "Touch-up Paint",
+                "color": "#004ac6",
+                "bbox": {"top": "15%", "left": "35%", "width": "25%", "height": "20%"},
+            },
+        ],
     }
 
-    # Prepend so the newest assessment appears first in history
+    # Prepend to the list so it appears first in history
     SAMPLE_ASSESSMENTS.insert(0, new_assessment_record)
 
     flash(f"Assessment {new_id} created successfully!", "success")
@@ -474,13 +381,12 @@ def save_settings():
 
 if __name__ == "__main__":
     print("\n" + "=" * 60)
-    print("  Damage Assessment System — Backend Server")
+    print("  Damage Assessment System ΓÇö Backend Server")
     print("=" * 60)
     print(f"  Home:            http://127.0.0.1:5000/")
     print(f"  New Assessment:  http://127.0.0.1:5000/new-assessment")
     print(f"  History:         http://127.0.0.1:5000/history")
     print(f"  Settings:        http://127.0.0.1:5000/settings")
-    print(f"  AI Pipeline:     {'ACTIVE' if _AI_PIPELINE_AVAILABLE else 'UNAVAILABLE (check logs)'}")
     print("=" * 60 + "\n")
 
     app.run(debug=True, host="127.0.0.1", port=5000)

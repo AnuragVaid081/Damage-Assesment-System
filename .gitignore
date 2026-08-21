@@ -27,3 +27,14 @@ ai/weights/
 # Logs / caches
 *.log
 .pytest_cache/
+
+# Ultralytics cache
+.ultralytics/
+
+# LLM runs
+runs/
+ai/validation/baseline_predictions/predictions/
+
+
+.env
+.env.example
